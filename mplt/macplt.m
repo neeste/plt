@@ -62,6 +62,8 @@ static NSString     *editApp = @"TextEdit";
 @property (strong) PlotView *plotView;
 - (void)openPlot:(NSString *)filename;
 - (IBAction)chooseFile:(id)sender;
+- (IBAction)editFile:(id)sender;
+- (IBAction)showHelp:(id)sender;
 - (IBAction)exportFile:(id)sender;
 - (IBAction)editFile:(id)sender;
 - (IBAction)printFile:(id)sender;
@@ -474,6 +476,12 @@ void epsfix(char *sfn) {
         [[NSWorkspace sharedWorkspace] openFile:pltFile withApplication:editApp];
     }
 }
+- (IBAction)showHelp:(id)sender {
+    NSString *helpPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Plt.help/Contents/Resources/PltHelp.html"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:helpPath]) {
+        [[NSWorkspace sharedWorkspace] openFile:helpPath];
+    }
+}
 - (IBAction)printFile:(id)sender {
     if (!self.plotView) return;
     PlotView *pltView = [[PlotView alloc] init];
@@ -525,6 +533,11 @@ int main(int argc, const char * argv[]) {
         
         NSMenuItem *aboutMenuItem = [[NSMenuItem alloc] initWithTitle:@"About Plt" action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
         [appMenu addItem:aboutMenuItem];
+        
+        NSMenuItem *helpMenuItem = [[NSMenuItem alloc] initWithTitle:@"Plt Help" action:@selector(showHelp:) keyEquivalent:@"?"];
+        [helpMenuItem setTarget:delegate];
+        [appMenu addItem:helpMenuItem];
+        
         [appMenu addItem:[NSMenuItem separatorItem]];
         NSMenuItem *quitMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quit Plt" action:@selector(terminate:) keyEquivalent:@"q"];
         [appMenu addItem:quitMenuItem];
@@ -538,15 +551,20 @@ int main(int argc, const char * argv[]) {
         NSMenuItem *openMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(chooseFile:) keyEquivalent:@"o"];
         [openMenuItem setTarget:delegate];
         [fileMenu addItem:openMenuItem];
+        
+        NSMenuItem *editMenuItem = [[NSMenuItem alloc] initWithTitle:@"Edit" action:@selector(editFile:) keyEquivalent:@"e"];
+        [editMenuItem setTarget:delegate];
+        [fileMenu addItem:editMenuItem];
+        
         [fileMenu addItem:[NSMenuItem separatorItem]];
         NSMenuItem *printMenuItem = [[NSMenuItem alloc] initWithTitle:@"Print..." action:@selector(print:) keyEquivalent:@"p"];
         [fileMenu addItem:printMenuItem];
         
         // 3. Edit Menu
-        NSMenuItem *editMenuItem = [[NSMenuItem alloc] init];
-        [menubar addItem:editMenuItem];
+        NSMenuItem *editMenuMenuItem = [[NSMenuItem alloc] init];
+        [menubar addItem:editMenuMenuItem];
         NSMenu *editMenu = [[NSMenu alloc] initWithTitle:@"Edit"];
-        [editMenuItem setSubmenu:editMenu];
+        [editMenuMenuItem setSubmenu:editMenu];
         
         [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Undo" action:@selector(undo:) keyEquivalent:@"z"]];
         [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Redo" action:@selector(redo:) keyEquivalent:@"Z"]];
@@ -556,16 +574,6 @@ int main(int argc, const char * argv[]) {
         [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Paste" action:@selector(paste:) keyEquivalent:@"v"]];
         [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Delete" action:@selector(delete:) keyEquivalent:@""]];
         [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Select All" action:@selector(selectAll:) keyEquivalent:@"a"]];
-        
-        // 4. Help Menu
-        NSMenuItem *helpMenuItem = [[NSMenuItem alloc] init];
-        [menubar addItem:helpMenuItem];
-        NSMenu *helpMenu = [[NSMenu alloc] initWithTitle:@"Help"];
-        [app setHelpMenu:helpMenu];
-        [helpMenuItem setSubmenu:helpMenu];
-        
-        NSMenuItem *showHelpMenuItem = [[NSMenuItem alloc] initWithTitle:@"Plt Help" action:@selector(showHelp:) keyEquivalent:@"?"];
-        [helpMenu addItem:showHelpMenuItem];
         
         NSLog(@"starting [app run]");
         [app run];
