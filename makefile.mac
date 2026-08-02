@@ -3,31 +3,31 @@
 BINDIR=/usr/local/bin
 
 build:
-	make -C out
-	make -C tplt
-	make -C tek
-	make -C pltfnt
+	make -f makefile.mac -C out
+	make -f makefile.mac -C tplt
+	make -f makefile.mac -C tek
+	make -f makefile.mac -C pltfnt
 	make -C man
 	echo Compilation complete.
 
 install: build
-	make -C out
-	make -C tplt install
+	make -f makefile.mac -C out
+	make -f makefile.mac -C tplt install
 	make -C man  install
 	mkdir -p $(BINDIR)
 	install -m 755 plt.sh $(BINDIR)/plt
 	echo Installation complete.
 
 uninstall:
-	make -C tplt uninstall
+	make -f makefile.mac -C tplt uninstall
 	make -C man uninstall
 	rm -f $(BINDIR)/plt
 
 clean:
-	make -C out clean
-	make -C tplt clean
-	make -C tek clean
-	make -C pltfnt clean
+	make -f makefile.mac -C out clean
+	make -f makefile.mac -C tplt clean
+	make -f makefile.mac -C tek clean
+	make -f makefile.mac -C pltfnt clean
 	make -C man clean
 	rm -f bin/[a-z]* *~ *.exe *.EXE *~
 	rm -f iplt/*~ mplt/*~ VS18/*~
