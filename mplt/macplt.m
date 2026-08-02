@@ -410,7 +410,7 @@ void epsfix(char *sfn) {
 - (void)openPlot:(NSString *)filename {
     [PlotView setFileName:filename];
     if (!self.window) {
-        NSRect frame = NSMakeRect(0, 0, 525, 400);
+        NSRect frame = NSMakeRect(0, 0, 1050, 800);
         self.window = [[NSWindow alloc] initWithContentRect:frame
                                                   styleMask:NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskResizable | NSWindowStyleMaskMiniaturizable
                                                     backing:NSBackingStoreBuffered
