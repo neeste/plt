@@ -1,0 +1,130 @@
+# makefile for pltfnt
+
+.SUFFIXES: .pft .txt
+
+.txt.pft:
+	pltfnt -p $*
+
+CFLAGS=-AL -Zi
+LIBS=..\out\libout.lib lgrlib llibce
+EXE=pltfnt.exe
+BIN=c:\usr\bin
+NETBIN=g:\usr\bin
+FD=c:\fonts # font directory
+
+FONTFILES= stdfnt.pft altfnt.pft audsym.pft \
+    cmpgrk.pft cmpita.pft cmprom.pft cmpscr.pft duprom.pft gtheng.pft \
+    gthger.pft smpgrk.pft smprom.pft smpscr.pft trpita.pft trprom.pft \
+    altbis.pft stdbis.pft cmpitaii.pft cmpromii.pft dupromii.pft \
+    smpromii.pft trpitaii.pft trpromii.pft stdfntii.pft ipa.pft
+
+
+FDFILES= $(FD)\stdfnt.pft $(FD)\altfnt.pft $(FD)\audsym.pft \
+    $(FD)\cmpgrk.pft $(FD)\cmpita.pft $(FD)\cmprom.pft $(FD)\cmpscr.pft \
+    $(FD)\duprom.pft $(FD)\gtheng.pft $(FD)\gthger.pft $(FD)\smpgrk.pft \
+    $(FD)\smprom.pft $(FD)\smpscr.pft $(FD)\trpita.pft $(FD)\trprom.pft \
+    $(FD)\altbis.pft $(FD)\stdbis.pft $(FD)\cmpitaii.pft \
+    $(FD)\cmpromii.pft $(FD)\dupromii.pft $(FD)\smpromii.pft \
+    $(FD)\trpitaii.pft $(FD)\trpromii.pft $(FD)\stdfntii.pft $(FD)\ipa.pft
+
+all: $(EXE) $(FONTFILES)
+
+pltfnt.exe: pltfnt.obj
+    cl -Zi -o $@ $** -link $(LIBS)	
+
+install: $(BIN)\$(EXE) $(FONTFILES) $(FDFILES)
+
+$(BIN)\$(EXE): $(EXE)
+	exepack $** $@
+
+netinst: $(NETBIN)\$(EXE)
+
+$(NETBIN)\$(EXE) : $(EXE)
+	attrib -r $@
+	exepack $** $@
+	attrib +r $@
+
+clean:
+	del *.obj
+	del *.bak
+	del *.log
+	del *.exe
+	del *.map
+	del *.pft
+	del *.pdb
+
+stdfnt.pft: stdfnt.txt
+altfnt.pft: altfnt.txt
+audsym.pft: audsym.txt
+cmpgrk.pft: cmpgrk.txt
+cmpita.pft: cmpita.txt
+cmprom.pft: cmprom.txt
+cmpscr.pft: cmpscr.txt
+duprom.pft: duprom.txt
+gtheng.pft: gtheng.txt
+gthger.pft: gthger.txt
+smpgrk.pft: smpgrk.txt
+smprom.pft: smprom.txt
+smpscr.pft: smpscr.txt
+trpita.pft: trpita.txt
+trprom.pft: trprom.txt
+altbis.pft: altbis.txt
+stdbis.pft: stdbis.txt
+cmpitaii.pft: cmpitaii.txt
+cmpromii.pft: cmpromii.txt
+dupromii.pft: dupromii.txt
+smpromii.pft: smpromii.txt
+trpitaii.pft: trpitaii.txt
+trpromii.pft: trpromii.txt
+stdfntii.pft: stdfntii.txt
+
+$(FD)\stdfnt.pft: stdfnt.pft
+	copy $** $@
+$(FD)\altfnt.pft: altfnt.pft
+	copy $** $@
+$(FD)\audsym.pft: audsym.pft
+	copy $** $@
+$(FD)\cmpgrk.pft: cmpgrk.pft
+	copy $** $@
+$(FD)\cmpita.pft: cmpita.pft
+	copy $** $@
+$(FD)\cmprom.pft: cmprom.pft
+	copy $** $@
+$(FD)\cmpscr.pft: cmpscr.pft
+	copy $** $@
+$(FD)\duprom.pft: duprom.pft
+	copy $** $@
+$(FD)\gtheng.pft: gtheng.pft
+	copy $** $@
+$(FD)\gthger.pft: gthger.pft
+	copy $** $@
+$(FD)\smpgrk.pft: smpgrk.pft
+	copy $** $@
+$(FD)\smprom.pft: smprom.pft
+	copy $** $@
+$(FD)\smpscr.pft: smpscr.pft
+	copy $** $@
+$(FD)\trpita.pft: trpita.pft
+	copy $** $@
+$(FD)\trprom.pft: trprom.pft
+	copy $** $@
+$(FD)\altbis.pft: altbis.pft
+	copy $** $@
+$(FD)\stdbis.pft: stdbis.pft
+	copy $** $@
+$(FD)\cmpitaii.pft: cmpitaii.pft
+	copy $** $@
+$(FD)\cmpromii.pft: cmpromii.pft
+	copy $** $@
+$(FD)\dupromii.pft: dupromii.pft
+	copy $** $@
+$(FD)\smpromii.pft: smpromii.pft
+	copy $** $@
+$(FD)\trpitaii.pft: trpitaii.pft
+	copy $** $@
+$(FD)\trpromii.pft: trpromii.pft
+	copy $** $@
+$(FD)\stdfntii.pft: stdfntii.pft
+	copy $** $@
+$(FD)\ipa.pft: ipa.pft
+	copy $** $@

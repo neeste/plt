@@ -1,0 +1,94 @@
+# Makefile for NeXT vesion of .../plt/tek
+
+BIN = /usr/local/bin
+
+VERSION=local
+C = -O
+CFLAGS = $C $D
+MATHLIB = -lm
+TEKLIB = libtek.a
+OUTLIB = ../out/libout.a
+LIBS = $(TEKLIB) $(OUTLIB) -lNeXT_s -lsys_s -ldpsops -lm
+
+TEKSUBS= alfa.o alfmod.o circen.o esccod.o grfmod.o tarc.o tcirc.o \
+	tekcat.o tekcvt.o
+#PLOTSUBS= line_.o space_.o openpl_.o closepl_.o erase_.o move_.o cont_.o
+PLOTSUBS=
+
+XFILES= tektty tekps tektyp tekhp tekout tekdbg clr tkm vtm
+
+HFILES= alfcom.h arccom.h alfa.h
+CFILES= alfa.c closepl_.c cont_.c erase_.c grfmod.c line_.c move_.c \
+	openpl_.c space_.c tekcvt.c alfmod.c esccod.c tcirc.c \
+	tarc.c tekcat.c
+
+all: $(XFILES)
+
+install: $(XFILES)
+	for i in $(XFILES); do \
+		install  -m 111 -s $$i $(BIN)/$$i; \
+	done
+
+clean:
+	rm -f *.o tags core lint.log $(XFILES)
+
+clr: clr.o 
+	cc $(CFLAGS) -o clr clr.o 
+
+tkm: tkm.o 
+	cc $(CFLAGS) -o tkm tkm.o 
+
+vtm: vtm.o 
+	cc $(CFLAGS) -o vtm vtm.o 
+
+tektyp: tektyp.o $(TEKLIB)
+	cc $(CFLAGS) -o tektyp tektyp.o $(TEKLIB) $(MATHLIB)
+
+teksg2: teksg2.o $(TEKLIB)
+	cc $(CFLAGS) -o teksg2 teksg2.o $(TEKLIB) $(MATHLIB)
+
+tekhp: tekhp.o $(TEKLIB)
+	cc $(CFLAGS) -o tekhp tekhp.o $(TEKLIB) $(MATHLIB)
+
+tekdbg: tekdbg.o $(TEKLIB)
+	cc $(CFLAGS) -o tekdbg tekdbg.o $(TEKLIB) $(MATHLIB)
+
+tektty: tektty.o $(TEKLIB) $(OUTLIB)
+	cc $(CFLAGS) -o tektty tektty.o $(LIBS)
+
+tekps: tekps.o $(TEKLIB) $(OUTLIB)
+	cc $(CFLAGS) -o tekps tekps.o $(LIBS)
+
+tekhirez: tekhirez.o $(TEKLIB)
+	cc $(CFLAGS) -o tekhirez tekhirez.o $(TEKLIB) $(MATHLIB)
+
+tekout: tekout.o $(TEKLIB)
+	cc $(CFLAGS) -o tekout tekout.o $(TEKLIB) $(MATHLIB)
+
+tekplot: tekplot.o $(PLOTSUBS) $(TEKLIB)
+	cc $(CFLAGS) -o tekplot tekplot.o $(TEKLIB) $(PLOTSUBS) $(MATHLIB) -lplot
+
+$(TEKLIB): $(TEKSUBS)
+	ar rus libtek.a $(TEKSUBS)
+
+$(OUTLIB) :
+	cd ../out; make libout.a
+
+# DO NOT DELETE THIS LINE
+
+alfa.o: alfcom.h font0.x font11.x
+alfmod.o: alfcom.h arccom.h
+tektyp.o: arccom.h
+esccod.o: arccom.h alfcom.h tcom.h
+grfmod.o: arccom.h tcom.h
+tekhp.o: arccom.h
+tarc.o:
+tcirc.o: arccom.h tcom.h
+tekcvt.o: alfcom.h
+tekplot.o: arccom.h
+tektty.o: arccom.h
+tekps.o: arccom.h
+teksg2.o: arccom.h
+tektyp.o: arccom.h
+tekhp.o: arccom.h
+tekdbg.o: arccom.h

@@ -1,0 +1,19 @@
+# configure PLT source code for Linux & Mac
+#
+rm -f makefile 
+if (test `uname` == "Darwin"); then
+    echo "Configure PLT for Mac.";
+    cp -f makefile.mac Makefile
+    cp -f tplt/makefile.mac tplt/Makefile
+    cp -f out/makefile.mac out/Makefile
+    cp -f pltfnt/makefile.mac pltfnt/Makefile
+    cp -f tek/makefile.mac tek/Makefile
+else
+    echo "Configure PLT for Linux.";
+    cp -f makefile.lnx Makefile
+    cp -f tplt/makefile.lnx tplt/Makefile
+    cp -f out/makefile.lnx out/Makefile
+    cp -f pltfnt/makefile.lnx pltfnt/Makefile
+    cp -f tek/makefile.lnx tek/Makefile
+fi
+echo "Type 'make', then (as root) 'make install'."

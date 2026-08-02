@@ -1,0 +1,23 @@
+head=0
+ebnum=1
+ticdir=inward
+xper=90
+xlab=x$label
+ylab=y$label
+rlab=r$label
+pltype=5
+;lintyp=2
+rint=5
+rmin=0
+rmax=1000
+rans=0
+yhor=1
+yann= 2.5,2.5$$ 7.500
+shade=34
+1,1,.5
+3,2,.75
+keep
+1,7
+8,8
+keep
+shade=35

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F2A073CB-7AFA-442D-A7B3-76B404DDB2D8}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.29511.113</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\$(Configuration)\</OutDir>
+    <IntDir>.\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IntDir>.\$(Configuration)\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Release/wplt.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(Filename).obj</ObjectFileName>
+      <ProgramDataBaseFileName>$(IntDir)%(Filename).pdb</ProgramDataBaseFileName>
+      <XMLDocumentationFileName>$(IntDir)%(Filename).xml</XMLDocumentationFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files\HTML Help Workshop\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ProgramDatabaseFile>.\Release/wplt.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release/wplt.bsc</OutputFile>
+    </Bscmake>
+    <PostBuildEvent>
+      <Message>Installing wplt</Message>
+      <Command>copy Release\wplt.exe x:\General_Progs
+copy Release\wplt.exe c:\usr\bin
+</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <TargetEnvironment>Win32</TargetEnvironment>
+      <TypeLibraryName>.\Debug/wplt.tlb</TypeLibraryName>
+      <HeaderFileName />
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;DEBUG;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderOutputFile />
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ObjectFileName>$(IntDir)%(Filename).obj</ObjectFileName>
+      <XMLDocumentationFileName>$(IntDir)%(Filename).xml</XMLDocumentationFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Culture>0x0409</Culture>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;htmlhelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <AdditionalLibraryDirectories>C:\Program Files\HTML Help Workshop\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>.\Debug/wplt.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug/wplt.bsc</OutputFile>
+    </Bscmake>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\tplt\axanno.c" />
+    <ClCompile Include="..\tplt\axes1.c" />
+    <ClCompile Include="..\tplt\axes2.c" />
+    <ClCompile Include="..\tplt\axes3.c" />
+    <ClCompile Include="..\tplt\axes4.c" />
+    <ClCompile Include="..\tplt\axes5.c" />
+    <ClCompile Include="..\tplt\axgrid.c" />
+    <ClCompile Include="..\tplt\axline.c" />
+    <ClCompile Include="..\tplt\axtick.c" />
+    <ClCompile Include="..\tplt\bindat.c" />
+    <ClCompile Include="..\tplt\cnglun.c" />
+    <ClCompile Include="..\tplt\dattim.c" />
+    <ClCompile Include="..\tplt\defpar.c" />
+    <ClCompile Include="..\tplt\doplot.c" />
+    <ClCompile Include="..\tplt\errbar.c" />
+    <ClCompile Include="..\tplt\filetime.c" />
+    <ClCompile Include="..\tplt\getdat.c" />
+    <ClCompile Include="..\tplt\getmsg.c" />
+    <ClCompile Include="..\tplt\getnum.c" />
+    <ClCompile Include="..\tplt\getstr.c" />
+    <ClCompile Include="..\tplt\histo.c" />
+    <ClCompile Include="..\tplt\ifmt.c" />
+    <ClCompile Include="..\tplt\indata.c" />
+    <ClCompile Include="..\tplt\indx.c" />
+    <ClCompile Include="..\tplt\iscan.c" />
+    <ClCompile Include="..\tplt\labchr.c" />
+    <ClCompile Include="..\tplt\label.c" />
+    <ClCompile Include="..\tplt\labpos.c" />
+    <ClCompile Include="..\tplt\linetp.c" />
+    <ClCompile Include="..\tplt\linplt.c" />
+    <ClCompile Include="..\tplt\lookup.c" />
+    <ClCompile Include="..\tplt\namfil.c" />
+    <ClCompile Include="..\tplt\numb2.c" />
+    <ClCompile Include="..\tplt\nxtlin.c" />
+    <ClCompile Include="..\tplt\opninc.c" />
+    <ClCompile Include="..\tplt\pltkey.c" />
+    <ClCompile Include="..\tplt\polygon.c" />
+    <ClCompile Include="..\tplt\proces.c" />
+    <ClCompile Include="..\tplt\putmsg.c" />
+    <ClCompile Include="..\tplt\rect.c" />
+    <ClCompile Include="..\tplt\setaxpar.c" />
+    <ClCompile Include="..\tplt\setprm.c" />
+    <ClCompile Include="..\tplt\setsiz.c" />
+    <ClCompile Include="..\tplt\setup.c" />
+    <ClCompile Include="..\tplt\shadeare.c" />
+    <ClCompile Include="..\tplt\smooth.c" />
+    <ClCompile Include="..\tplt\sort.c" />
+    <ClCompile Include="..\tplt\stnmpm.c" />
+    <ClCompile Include="..\tplt\sttxpm.c" />
+    <ClCompile Include="..\tplt\tplt.c" />
+    <ClCompile Include="..\tplt\wave.c" />
+    <ClCompile Include="..\tplt\wplt.c" />
+    <ClCompile Include="..\tplt\wrprml.c" />
+    <ClCompile Include="..\tplt\xpos.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="wplt.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\tplt\output.h" />
+    <ClInclude Include="..\tplt\plt.h" />
+    <ClInclude Include="..\tplt\pltblk.h" />
+    <ClInclude Include="..\tplt\version.h" />
+    <ClInclude Include="..\tplt\wplt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="wplt.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="outlib.vcxproj">
+      <Project>{4ea9da28-2632-412b-8fbd-30d593814dd3}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

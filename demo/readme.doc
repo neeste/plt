@@ -1,0 +1,18 @@
+
+                  PLT version 4.22 for MSDOS and Win95
+
+These files demonstrate use of the PLT program on an IBM-PC compatible
+microcomputer.  Test the PLT program plotting the files logo.plt,
+hc.plt, and star.plt to the screen.  For example, type:
+
+	plt logo hc star
+
+The file wplt.exe is a (noninteractive) Win95 version of the PLT
+program.  Refer to the file "plt.man" for further information on use of
+the PLT program. 
+
+
+						Stephen Neely
+						BTNRH
+						September 1997
+                                                neely@BoysTown.ORG

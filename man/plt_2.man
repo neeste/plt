@@ -1,0 +1,692 @@
+.PP
+Plt files are ASCII files in which each line is either
+(1) a keyword,
+(2) a transfer of control,
+(3) a numeric parameter,
+(4) a string parameter,
+(5) a message,
+(6) a macro,
+(7) a comment,
+or
+(8) one or more data values.
+Only the first four characters are necessary
+to specify any keyword or parameter name.
+.SH KEYWORDS
+.ta 13n
+.PP
+Keywords have no argument or value associated with them,
+but cause an action or change of mode.
+.sp
+.in +13n
+.ti -13n
+DATA	Indicates the following lines are data points.
+.ti -13n
+DATLIST	Prints contents of data buffer.
+.ti -13n
+EXIT	Immediately terminates the program.
+.ti -13n
+FILTER	Removes data files that are not within the range specified by
+XMIN, YMIN, XMAX, and YMAX.
+.ti -13n
+FINISH	Terminates and closes plot file.
+.ti -13n
+KEEP	Plots data and keeps data for replotting.
+.ti -13n
+NEWFRAME	Begin a new plot frame on the current page.
+.ti -13n
+NEWPAGE	Advances to a new page.
+.ti -13n
+NEWRANGE	Begin a new range of X and/or Y values in the current frame.
+.ti -13n
+PALETTE	Uses data to set RGB color palette.
+.ti -13n
+PLAY	Interprets data as musical notes.
+.ti -13n
+PLOT	Plots data and frame if necessary.
+.ti -13n
+PRMLIST	Prints out the current parameter values.
+.ti -13n
+RESET	Sets all parameters to their default values.
+.ti -13n
+STAT	Updates internal variables that describe statistics related to
+the data.
+.ti -13n
+VARLIST	Prints out the current user variable values.
+.in -13n
+.SH AUXILIARY FILES
+.PP
+These commands have a file name as an argument.
+If
+.q "."
+does not appear in the filename then
+then a default extension is added.
+.sp
+.in +13n
+.ti -13n
+BDATA	Includes specified file as a binary data file.
+.ti -13n
+CALL	Transfers control to another file.
+.ti -13n
+INCLUDE	Includes specified file as a
+.q ".plt"
+file.
+.ti -13n
+STDFNT	Load external font file as the standard font.
+.ti -13n
+ALTFNT	Load external font file as the alternate font.
+.ti -13n
+SYMFNT	Load external font file as the symbol font.
+.in -13n
+.SH NUMERIC PARAMETERS
+.ta 16nR +2n
+.PP
+Numeric parameters are followed by
+.q "="
+and either a number
+or a word.
+Default values are given below after each parameter name.
+The numbers in brackets refer to Notes at the end.
+.sp
+.in +18n
+.ti -18n
+ANNCOL	-1	Annotation color.  [6]
+.ti -18n
+ANNLWT	1	Annotation line weight.  [1]
+.ti -18n
+ANNSIZ	1	Annotation size.  [2]
+.ti -18n
+AXCOL 	-1	Axes color.  [6]
+.ti -18n
+AXLWT 	1	Axes line weight.  [1]
+.ti -18n
+BGCOL 	-1	Background color.  [6]
+.ti -18n
+CLIP	0	Clip lines at frame boundary. [3]
+.ti -18n
+CORNER	1	Draw axis frame corners when xpercent or ypercent
+are less than 100. [3]
+.ti -18n
+EBNUM	2	Number of error bars:
+0 = none,
+1 = upper bar only,
+2 = both upper and lower,
+-1 = lower bar only.
+.ti -18n
+EBWID	1	Width of error bars scale factor. [2]
+.ti -18n
+ECHO	0	Echo each input line read.  [3]
+.ti -18n
+FGCOL 	-1	Foreground color.  [6]
+.ti -18n
+FNCOL 	-1	Fountain color. 
+Specifies a different background color at the top of the page
+which gradually changes to BGCOL toward the bottom of the page.  [6]
+.ti -18n
+GAPSIZE	1	Controls size of gap between line segments
+for plotting symbols. [2]
+.ti -18n
+GRDCOL 	-1	Grid color.  [6]
+.ti -18n
+GRDLWT 	1	Grid line weight.  [1]
+.ti -18n
+GRDSIZ 	1	Grid line pattern size.  [7]
+.ti -18n
+GRDTYPE	1	Grid line type:
+0 = solid lines,
+1 = dotted lines,
+>1 = dashed lines.
+.ti -18n
+GRID	0	Plot grid lines at major intervals.  [3]
+.ti -18n
+HEADER	1	Date, time, filename and page number printed at
+.I bottom
+of plot.  [3]
+.ti -18n
+LABCOL	-1	Label color.  [6]
+.ti -18n
+LABLWT	1	Label line weight.  [1]
+.ti -18n
+LABSIZ	1	Label size.  [2]
+.ti -18n
+LINSIZ 	1	Plot line pattern size.  [7]
+.ti -18n
+LINTYPE	0	Plot line type:
+0 = solid lines,
+1 = dotted lines,
+>1 = dashed lines.
+.ti -18n
+MAGNIFY	1	Magnify entire plot by this scale factor.
+.ti -18n
+MHALIGN	0	Interpret MXLLC as a position for alternate message string
+horizontal alignment:
+0=Normal,
+1=Left,
+2=Center,
+3=Right.
+.ti -18n
+MHKEY 	3	Controls horizontal size of shade boxes and lines in
+messages and axis labels.  [2]
+.ti -18n
+MHSP 	0	Controls horizontal spacing between characters in messages
+relative to their height.
+.ti -18n
+MHXP 	1	Controls horizontal expansion of characters in messages.
+.ti -18n
+MSGANGLE	0	Message angle (degrees counterclockwise from x-axis).
+.ti -18n
+MSGCOL	-1	Message color.  [6]
+.ti -18n
+MSGDAT	0	Interpret MXLLC and MYLLC in coordinate system of the
+data instead of inches relative to XLLC and YLLC.  [3]
+.ti -18n
+MSGLWT	1	Message line weight.  [1]
+.ti -18n
+MSGSIZ	1	Message size.  [2]
+.ti -18n
+MSLANT	0	Italic slant of characters in messages in degrees
+clockwise from upright.
+.ti -18n
+MVALIGN	0	Interpret MYLLC as a position for alternate message string
+vertical alignment:
+0=Normal,
+1=Top,
+2=Cap,
+3=Half,
+4=Base,
+5=Bottom.
+.ti -18n
+MVKEY 	1	Controls vertical size of shade boxes and symbols in
+messages.  [2]
+.ti -18n
+MVSP 	1.64	Controls vertical spacing between lines in messages and
+axis labels.
+.ti -18n
+MXDAT	0	Interpret MXLLC in coordinate system of the
+data instead of inches relative to XLLC.  [3]
+.ti -18n
+MXLLC	0	Message location in the x direction (inches).
+.ti -18n
+MYDAT	0	Interpret MYLLC in coordinate system of the
+data instead of inches relative to YLLC.  [3]
+.ti -18n
+MYLLC	0	Message location in the y direction (inches).
+.ti -18n
+NDATA	1	Number of times that each data line is read.
+.ti -18n
+OPENAX	0	Leave the top and right side of axes open.  [3]
+.ti -18n
+PLTCOL	-1	Plot color.  [6]
+.ti -18n
+PLTLWT	1	Plot line weight.  [1]
+.ti -18n
+PLTYPE	3	Plot type:
+1 = symbols only,
+2 = lines only,
+3 = both symbols and lines,
+4 = histogram,
+5 = rectangles,
+6 = polygon,
+7 = wave,
+8 = contiguous rectangles,
+and
+9 = cummulative distribution.
+.ti -18n
+RANSKP	0	Right annotation skip.  [5]
+.ti -18n
+RAXIS	1	Right-axis: 1=on, 0=off.
+.ti -18n
+RBREAK	0	Right-axis break location (percent).
+.ti -18n
+RCYCLE	0	Number of logarithmic cycles in the right axis.
+.ti -18n
+RINT	5	Right intervals for tick marks.  [4]
+.ti -18n
+RMAX	0	Right axis maximum value.
+.ti -18n
+RMIN	0	Right axis minimum value.
+.ti -18n
+ROTATE	0	Rotate plot:
+0 = no rotation,
+1 = 90 degrees,
+2 = 180 degrees,
+and
+3 = 270 degrees.
+
+.ti -18n
+RPERCENT	100	Percent of right axis used to position the limits.
+.ti -18n
+RSHIFT	0	Right-axis shift of tick marks and annotations (percent).
+.ti -18n
+RTICK	1	Controls length of the tick marks on the right axis. [3]
+.ti -18n
+SHADE	0	Shade in the histogram bars:
+0=Hollow,
+1=Solid,
+(2-39)=Hatch.
+SHADE value 40 fills the area with a gray value between black and white
+(see SHDGRAY).
+SHADE values 41-79 are the same as 1-39 except that the interior is
+filled with gray before the hatch pattern and outline are drawn.
+.ti -18n
+SHDCOL	-1	Shade color.  [6]
+.ti -18n
+SHDGRAY	1	Gray area fill for SHADE values 41-79.
+The gray values range from 0 (black) to 1 (white).
+.ti -18n
+SHDLWT	1	Shade hatch line line weight.  [1]
+.ti -18n
+SIZFAC	0	Size factor.  Controls size of everything.
+For negative values PLT does not change the sizes from frame to frame.
+Positive values instruct PLT to compute sizes as if average axis length
+was equal to SIZFAC.
+.ti -18n
+SMOOTH	0	Smooth the data.  [3]
+.ti -18n
+SOLID	0	Solid symbols are produced if possible.  [3]
+.ti -18n
+SORT	0	Sort data in order of increasing x values.  [3]
+.ti -18n
+SPLINE	0	Draw a B-spline instead of connecting points for PLTYPE=2 or 3.
+.ti -18n
+SYMANG	0	Rotation angle of symbol (degrees counter-clockwise)
+relative to normal orientation.
+.ti -18n
+SYMBOL	1	Symbol represents the number of symbol to plot (0-31).
+.ti -18n
+SYMSIZ	1	Symbol size.  [2]
+.ti -18n
+TANSKP	0	Top annotation skip.  [5]
+.ti -18n
+TAXIS	1	Top-axis: 1=on, 0=off.
+.ti -18n
+TBREAK	0	Top-axis break location (percent).
+.ti -18n
+TCYCLE	0	Number of logarithmic cycles in the top axis.
+.ti -18n
+TICDIR	0	Tick direction:
+value or
+.q "inward"
+produce tick marks inward otherwise they are outward.
+.ti -18n
+TICSIZ	1	Controls length of the tick marks on all axes. [2]
+.ti -18n
+TINT	5	Top intervals for tick marks.  [4]
+.ti -18n
+TMAX	0	Top axis maximum value.
+.ti -18n
+TMIN	0	Top axis minimum value.
+.ti -18n
+TPERCENT	100	Percent of top axis used to position the limits.
+.ti -18n
+TSHIFT	0	Top-axis shift of tick marks and annotations (percent).
+.ti -18n
+TTICK	1	Controls length of the tick marks on the top axis. [3]
+.ti -18n
+VXLLC	0	X dimension virtual page offset (inches).
+.ti -18n
+VYLLC	0	Y dimension virtual page offset (inches).
+.ti -18n
+WXLEN	10.5	X dimension virtual page length (inches).
+.ti -18n
+WXLLC	10.5	X dimension virtual page offset from lower-left corner (inches).
+.ti -18n
+WYLEN	8	Y dimension virtual page length (inches).
+.ti -18n
+WYLLC	8	Y dimension virtual page offset from lower-left corner (inches).
+.ti -18n
+XANSKP	0	X-axis annotation skip.  [5]
+.ti -18n
+XAXIS	1	X-axis: 1=on, 0=off.
+.ti -18n
+XBREAK	0	X-axis break location (percent).
+.ti -18n
+XCYCLE	0	Number of logarithmic cycles in the x axis.
+.ti -18n
+XGAIN	1	Scale factor applied to X data before plotting.
+.ti -18n
+XINT	5	X axis intervals.  [4]
+.ti -18n
+XLEN	6	X axis length (inches).
+.ti -18n
+XLLC	2.2	Location of lower-left corner of axes in x direction (inches).
+.ti -18n
+XMAX	10	X axis maximum value.
+.ti -18n
+XMIN	0	X axis minimum value.
+.ti -18n
+XOFST	0	Offset applied to X data before plotting.
+.ti -18n
+XPERCENT	100	Percent of x axis used to position the limits.
+.ti -18n
+XSHIFT	0	X-axis shift of tick marks and annotations (percent).
+.ti -18n
+XTICK	1	Controls length of the tick marks on the bottom axis. [3]
+.ti -18n
+YANSKP	0	Y-axis annotation skip.  [5]
+.ti -18n
+YAXIS	1	Y-axis: 1=on, 0=off.
+.ti -18n
+YBREAK	0	Y-axis break location (percent).
+.ti -18n
+YCYCLE	0	Number of logarithmic cycles in the y axis.
+.ti -18n
+YGAIN	1	Scale factor applied to Y data before plotting.
+.ti -18n
+YHOR	0	Place the labels on the y axis horizontally.  [3]
+.ti -18n
+YINT	5	Y axis intervals.  [4]
+.ti -18n
+YLEN	6	Y axis length (inches).
+.ti -18n
+YLLC	1.5	Location of lower-left corner of axes in y direction (inches).
+.ti -18n
+YMAX	10	Y axis maximum value.
+.ti -18n
+YMIN	0	Y axis minimum value.
+.ti -18n
+YOFST	0	Offset applied to Y data before plotting.
+.ti -18n
+YPERCENT	100	Percent of y axis used to position the limits.
+.ti -18n
+YSHIFT	0	Y-axis shift of tick marks and annotations (percent).
+.ti -18n
+YTICK	1	Controls length of the tick marks on the left axis. [3]
+.ti -18n
+ZGAIN	1	Scale factor applied to Z data before plotting.
+.ti -18n
+ZOFST	0	Offset applied to Z data before plotting.
+.ti -18n
+______________________________
+.in -18n
+.ta 10n
+.in +10n
+.ti -10n
+Note 1:	Negative values select absolute line weights, positive
+values multiply the default line weight, and zero eliminates the lines.
+.ti -10n
+Note 2:	Positive values are used as multipliers of default size.
+Negative values are used as absolute size in inches.
+.ti -10n
+Note 3:	YES = Y = 1 and NO = N = 0.
+.ti -10n
+Note 4:	Intervals for tic marks are of the form MM.N
+where MM and N are the number of major and minor intervals respectively.
+Zero value indicates axis line with no tick marks.
+.ti -10n
+Note 5:	If set to zero no annotations are to be skipped.
+Positive values indicate the number of annotations to be skipped.
+The first digit after the decimal point
+indicates an offset to the first annotation not skipped.
+Negative values produce no annotations.
+.ti -10n
+Note 6:	The interpretation of color is device dependent.
+A small positive value selects a pen number (1-9) on pen plotter devices
+(HPGL and Tektronix)
+and selects a predefined color index (0-15) on other devices
+that support color output
+(PC, PostScript, and CGM).
+A negative value for fgcol, bgcol, and fncol indicates that device
+default colors should be used.
+A negative value for all other color parameters indicates that the color should
+be set to the same value as fgcol.
+.ti -10n
+Note 7:	The line pattern size controls the length of the dash plus
+space for line types greater than (or equal to) 1.
+Negative values select absolute pattern size in inches, positive
+values multiply the default pattern size.
+.in -10n
+.SH STRING PARAMETERS
+.ta 15n
+.PP
+String parameters are followed by an equals sign and a string.
+The default value of all string paramters is a NULL string.
+.sp
+.in +15n
+.ti -15n
+RANNOT	Right axis annotation.
+.ti -15n
+RFMT	Right axis annotation format.
+.ti -15n
+RLABEL	Right axis label.
+.ti -15n
+TANNOT	Top axis annotation.
+.ti -15n
+TFMT	Top axis annotation format.
+.ti -15n
+TLABEL	Top axis label.
+.ti -15n
+XANNOT	X axis annotation.
+.ti -15n
+XDATA	X data definition.
+.ti -15n
+XFMT	X axis annotation format.
+.ti -15n
+XLABEL	X axis label.
+.ti -15n
+YANNOT	Y axis annotation.
+.ti -15n
+YDATA	Y data definition.
+.ti -15n
+YFMT	Y axis annotation format.
+.ti -15n
+YLABEL	Y axis label.
+.ti -15n
+ZDATA	Z data definition.
+.in -15n
+.SH MESSAGES
+.PP
+Messages are quoted strings which may be several lines long. 
+The position of the message may be specified immediately preceding the
+open quote on the first line of the message or by setting the 
+parameters MXLLC and MYLLC.
+.SH MACROS
+.PP
+Macros are invoked by a line that begins with "%macroname"
+followed by up to 99 arguments (delimited by spaces).
+There are four internal macros %define, %undefine, %msg, and %repeat.
+New macros may be defined using the %define macro.
+The first argument of %define is the new macro name
+(without the % character)
+and the second argument may contain the body of the new macro.
+If the %define macro has no second argument,
+the body of the new macro will be obtained from the succeeding lines
+of the pltfile up to a line that begins with "%%".
+Ocurrences of $1, $2, ... $99 within the body of the
+macro are replaced by arguments when the new macro is invoked.
+The %undefine removes the macro definition.
+Formatted messages are produced by the %msg macro.
+The first two arguments are the x and y locations used to located the
+message on the plot. The third argument is a format string which may
+contain C-type floating point format specifications embedded in text.
+For each floating-point specification in the format string, there should
+be an additional argument with an arithmetic expression for the value of
+the corresponding floting-point number.
+The %repeat macro is similar to the %define macro
+except that the first argument is a repeat count
+instead of a new macro name.
+Any ocurrence of $0 in the body of %repeat will be replaced by an index
+of the current interation.
+.SH FUNCTIONS
+.PP
+Any macro that is defined by a single arithmetic statement may also be
+used as a function within another arithmetic statement. Functions are
+invoked by the fuction name followed by parentheses. Any function
+arguments are delimited by commas within the parentheses.
+In addition to user-defined functions, there are several internally
+defined functions:
+.sp
+.in +15n
+.ti -15n
+abs(x)	absolute value of x
+.ti -15n
+atan(x)	actangent of x
+.ti -15n
+ceil(x)	least integer greater than x
+.ti -15n
+cos(x)	cosine of x
+.ti -15n
+erf(x)	error function of x
+.ti -15n
+exp(x)	natural number e to the power of x
+.ti -15n
+floor(x)	greatest integer less than x
+.ti -15n
+ifelse(c,x,y)	if c is non-zero, value is x;
+otherwise value is y
+.ti -15n
+limit(a,x,b)	if x is less than a, value is a;
+if x is greater than b, value is b;
+otherwise value is x
+.ti -15n
+ln(x)	natural logarithm of x
+.ti -15n
+log(x)	base 10 logarithm of x
+.ti -15n
+max(x,y,...)	maximum value of x, y, ... .
+.ti -15n
+min(x,y,...)	minimum value of x, y, ... .
+.ti -15n
+sin(x)	sine of x
+.ti -15n
+sqrt(x)	square-root of x
+.ti -15n
+tan(x)	tangent of x
+.ti -15n
+xdat(i)	returns the i-th value from the x-data list
+.ti -15n
+ydat(i)	returns the i-th value from the y-data list
+.ti -15n
+zdat(i)	returns the i-th value from the z-data list
+.ti -15n
+zdev(p)	converts percentile score to z-score
+.ti -15n
+ztop(z)	converts z-score to percentile score
+.in -15n
+.SH INTERNAL VARIABLES
+.PP
+Internal variables values that can be used in arimetic expressions.
+These valiables are identified by names that begin with ``$''.
+Most of the internal variables represent statistics that are computed
+from the data when the keyword STAT is used:
+.sp
+.in +15n
+.ti -15n
+$corr_xy	correllation between x-data and y-data values
+.ti -15n
+$lr_a	linear-regression coeffient a in y=a+bx
+.ti -15n
+$lr_b	linear-regression coeffient b in y=a+bx
+.ti -15n
+$lr_c	linear-regression coeffient c in x=c+dy
+.ti -15n
+$lr_d	linear-regression coeffient d in x=c+dy
+.ti -15n
+$n	number of data values
+.ti -15n
+$sum_x	sum of x-data values
+.ti -15n
+$sum_xx	sum of x-data values squared
+.ti -15n
+$sum_xy	sum of x-data values times y-data values
+.ti -15n
+$sum_y	sum of y-data values
+.ti -15n
+$sum_yy	sum of y-data values squared
+.ti -15n
+$x_max	maximum value of x-data
+.ti -15n
+$x_min	minimum value of x-data
+.ti -15n
+$x_sd	standard deviation of x-data values
+.ti -15n
+$y_max	maximum value of y-data
+.ti -15n
+$y_min	minimum value of y-data
+.ti -15n
+$y_sd	standard deviation of y-data values
+.in -15n
+.PP
+There are three additional internal variables:
+.sp
+.in +15n
+.ti -15n
+$device	number of the current output device
+.ti -15n
+$random	random number, uniformly distributed between zero and one.
+.ti -15n
+$x	current x-data value, useful for defining y=f($x)
+.in -15n
+.SH EXTERNAL FONTS
+.PP
+The internal definitions that plt program normally uses for symbols and
+text characters can be replaced by loading external definitions from
+plt font files.  Use SYMFNT to redefine symbols, STDFNT to redefine
+the standard character set and ALTFNT to replace the alternate character
+set (usually Greek letters).  The plt font files are created and
+modified by a separate program (pltfnt).
+.SH BINARY DATA
+.PP
+Plt can read binary data files using the BDATA command.
+The binary data file must have a short header followed by integer data
+values.
+All integer values are assumed to stored in the file with the
+least-significant byte first.
+This is the standard integer storage on the VAX and PC,
+but not on the NeXT.
+The header contains four two-byte integers:
+(1) a magic number for identification = 12345 decimal,
+(2) the number of bytes per integer value in the data (must be 2),
+(3) the number of coordinate values (x, y, z)
+to be specified for each data point (must be 1, 2, or 3),
+and
+(4) the number of data points in the file.
+.SH SPECIAL CHARACTERS
+.ta 8n
+.PP
+Some characters have special meaning in messages or labels.
+.sp
+.in +8n
+.ti -8n
+[str]	Subscript
+.I str.
+.ti -8n
+{str}	Superscript
+.I str.
+.ti -8n
+^str^	Shift to alternate font for
+.I str.
+.ti -8n
+|\^str|	If
+.I str
+is null or
+.q "*",
+then the current symbol is inserted.
+If
+.I str
+is a number (0-31),
+then the symbol with the corresponding number is inserted.
+If the number is preceded by an '_'
+then a line with corresponding line type is inserted.
+If the number is preceded by a '#'
+then a box with corresponding shade type is inserted.
+Otherwise,
+.I str
+and the surrounding
+.q "|"
+are taken literally.
+.ti -8n
+$	Replace
+.q "$"
+in string with space.
+.ti -8n
+;	Begin comment.
+.ti -8n
+!	Begin comment and write comment to error output.
+.ti -8n
+\\c	Insert character
+.I c
+without special
+meaning indicated above, where
+.I c
+is [ ] { } ^ \ $ | ; ! " or \\.
+.in -8n

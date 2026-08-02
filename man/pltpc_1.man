@@ -1,0 +1,86 @@
+.ds lq \&"\"
+.ds rq \&"\"
+.if t \
+.	ds lq ``
+.if t \
+.	ds rq ''
+.de q
+\&\\*(lq\\$1\\*(rq\\$2
+..
+.TH
+.tl "PLT version 4.4 Command Summary""June 1998"
+.rm }C
+.rm }F
+.rm }H
+.pl 999
+.de I
+\\$1
+..
+.SU
+.SH NAME
+plt - draw a graph
+.SH SYNOPSIS
+.B plt
+[ options ]  pltfile ... 
+.SH DESCRIPTION
+.I Plt
+causes the named pltfiles to be plotted on the indicated output device.
+The options are:
+.TP
+.BI \-e
+Causes the input file to be echoed on the error output.
+.TP
+.BI \-cm
+Use centimeters instead of inches as the basic unit.
+.TP
+.BI \-mm
+Use millimeters instead of inches as the basic unit.
+.TP
+.BI \-m0
+Output to stdout in Tektronix 4663 plotter language.
+.TP
+.BI \-m1
+Output to stdout for Tektronix 4010 terminal.
+.TP
+.BI \-m2
+Output to stdout in Impress language.
+.TP
+.BI \-m3
+Output to stdout in HPGL graphics language.
+.TP
+.BI \-m4
+Output directly to a PC graphics adapter (HGC, CGA, EGA, VGA),
+choice influenced by environment variable PLT_DEVICE.
+.TP
+.BI \-m5
+Output encapsulated PostScript to stdout.
+.TP
+.BI \-m6
+Output CGM (computer graphics metafile) to stdout.
+.TP
+.BI \-nq
+Don't wait for user input between pages.
+.TP
+.BI \-ns
+Speeds console output by drawing wide lines as thin lines.
+.TP
+.BI \-tc
+Use device alphanumeric mode for text.
+(This is the default for -m0.)
+.TP
+.BI  \-te
+Speeds plotting by replacing all text strings with rectangles which represent
+the text extent.
+.TP
+.BI \-ts
+Draw text in graphics mode.
+(This is the default for most devices.)
+.TP
+.BI \-v
+Print PLT program version.
+.PP
+If the environment variable PLT_DEVICE is set to PC,
+then the plt program will try to determine whether
+the graphics adapter is HGC, CGA, EGA, or VGA.
+To override this choice,
+PLT_DEVICE can be set explicitly to HGC, CGA, EGA, or VGA.

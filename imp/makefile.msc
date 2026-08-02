@@ -1,0 +1,58 @@
+# makefile for imp2lj and imp2fx
+
+CFLAGS=-AL -Ox -Zi
+LFLAGS=/LI/M/CO
+
+all: imp2fx.exe imp2lj.exe
+
+imp2fx.exe : imp2fx.obj impress.obj tppcl.obj fx.obj lpr.obj
+	link $(LFLAGS) imp2fx impress tppcl fx lpr;
+
+imp2lj.exe : imp2lj.obj impress.obj tppcl.obj lj.obj lpr.obj
+	link $(LFLAGS) imp2lj impress tppcl lj lpr;
+
+FXE=\usr\bin\imp2fx.exe \usr\bin\pltfx.bat \usr\bin\pltfxq.bat
+LJE=\usr\bin\imp2lj.exe \usr\bin\pltlj.bat \usr\bin\pltljq.bat
+
+install: $(FXE) $(LJE)
+
+\usr\bin\imp2fx.exe : imp2fx.exe
+	exepack imp2fx.exe \usr\bin\imp2fx.exe 
+
+\usr\bin\imp2lj.exe : imp2lj.exe
+	exepack imp2lj.exe \usr\bin\imp2lj.exe 
+
+\usr\bin\pltfx.bat : pltfx.bat
+	copy pltfx.bat \usr\bin\pltfx.bat 
+
+\usr\bin\pltfxq.bat : pltfxq.bat
+	copy pltfxq.bat \usr\bin\pltfxq.bat 
+
+\usr\bin\pltlj.bat : pltlj.bat
+	copy pltlj.bat \usr\bin\pltlj.bat 
+
+\usr\bin\pltljq.bat : pltljq.bat
+	copy pltljq.bat \usr\bin\pltljq.bat 
+
+clean:
+	del *.obj
+	del *.bak
+	del *.log
+	del *.exe
+        del *.map
+        del *.pdb
+
+lint: imp2lj.log imp2fx.log
+
+imp2lj.log: imp2lj.c impress.c tppcl.c lj.c lpr.c
+	lint > $@ <<imp2lj.lnt
+	-e7?? -DMSDOS -DANSI_C /lib/co-msc
+	$**
+<<NOKEEP
+
+imp2fx.log: imp2fx.c impress.c tppcl.c fx.c lpr.c
+	lint > $@ <<imp2fx.lnt
+	-e7?? -DMSDOS -DANSI_C /lib/co-msc
+	$**
+<<NOKEEP
+

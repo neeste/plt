@@ -1,0 +1,69 @@
+.ds lq \&"\"
+.ds rq \&"\"
+.if t \
+.	ds lq ``
+.if t \
+.	ds rq ''
+.de q
+\&\\*(lq\\$1\\*(rq\\$2
+..
+.TH PLT 1 LOCAL
+.SU
+.SH NAME
+plt - draw a graph
+.SH SYNOPSIS
+.B plt
+[ options ]  pltfile ... 
+.SH DESCRIPTION
+.I Plt
+causes the named pltfiles to be plotted on the indicated output device.
+The options are:
+.sp
+.TP
+.BI \-cm
+Use centimeters instead of inches as the basic unit.
+.TP
+.BI \-cgm
+Writes CGM (computer graphics metafile) to stdout.
+.TP
+.BI \-d
+Writes debugging information to stdout.
+.TP
+.BI \-e
+Causes the input file to be echoed on the error output.
+.TP
+.BI \-eps
+Writes encapsulated PostScript to stdout.
+.TP
+.BI \-mm
+Use millimeters instead of inches as the basic unit.
+.TP
+.BI \-n
+Send the output to /dev/null instead of plotting.
+.TP
+.BI \-nb
+Eliminate the border which outlines the extent of the page.
+.TP
+.BI \-nc
+Don't use colors, even if the output device supports colors.
+.TP
+.BI \-o \ file
+Put the tek plotter language output in a file instead of plotting.
+.TP
+.BI  \-p 
+Specifies the NeXT printer as the output device.
+.TP
+.BI  \-t
+Specifies /dev/tty as the output device and assumes a Tektronix graphics
+terminal.
+.TP
+.BI  \-te
+Speeds plotting by replacing all text strings with boxes.
+.TP
+.BI  \-v
+Print PLT program version.
+.PP
+Plt uses SVGA within a Linux console, X window graphics when executed
+from xterm, and generates Tektronics 4010 graphics when executed from a
+telnet connection.
+

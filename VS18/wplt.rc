@@ -1,0 +1,86 @@
+// wplt.rc
+//
+#include <windows.h>
+#include "../tplt/wplt.h"
+#include "../tplt/version.h"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+WPLT_ICON               ICON    DISCARDABLE     "WPLT.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+WPLT MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open        \aCtrl+O",            OPEN_FILE
+        MENUITEM "&Edit        \aCtrl+E",            EDIT_FILE
+        MENUITEM "Expor&t      \aCtrl+S",            SAVE_FILE
+        MENUITEM "&Print       \aCtrl+P",            PRINT_FILE
+        MENUITEM "&Batch Print \aCtrl+B",            BATCH_PRINT
+        MENUITEM "E&xit           ",            EXIT
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Replot      \aCtrl+R",            REPLOT
+        MENUITEM "&Update      \aCtrl+U",            UPDATE
+        MENUITEM "&Copy        \aCtrl+C",            COPY_CLIP
+        MENUITEM "Error &Log   \aCtrl+L",            VIEW_LOG
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "PLT User's &Guide    \aF1",    MN_HELP_MANUAL
+        MENUITEM "&About PLT      ",            MN_HELP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUTBOX DIALOG DISCARDABLE  22, 17, 167, 74
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About PLT"
+FONT 8, "System"
+BEGIN
+    PUSHBUTTON      "OK",IDOK,132,2,32,14,WS_GROUP
+    ICON            WPLT_ICON,101,3,2,18,20
+    LTEXT           "BTNRH PLT",102,25,2,100,8
+    LTEXT           REV,103,25,10,100,8
+    CTEXT           COPY,104,2,34,165,8
+    CTEXT           BTNRH,105,2,42,165,18
+    CTEXT           RIGHTS,106,2,50,165,18
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+MAINACC ACCELERATORS MOVEABLE PURE 
+BEGIN
+    VK_RETURN,      ENTER,                  VIRTKEY 
+    VK_F1,          MN_HELP_MANUAL,         VIRTKEY 
+    VK_F2,          REPLOT,                 VIRTKEY 
+    "C",            COPY_CLIP,              VIRTKEY, CONTROL
+    "E",            EDIT_FILE,              VIRTKEY, CONTROL
+    "L",            VIEW_LOG,               VIRTKEY, CONTROL
+    "O",            OPEN_FILE,              VIRTKEY, CONTROL
+    "P",            PRINT_FILE,             VIRTKEY, CONTROL
+    "B",            BATCH_PRINT,            VIRTKEY, CONTROL
+    "R",            REPLOT,                 VIRTKEY, CONTROL
+    "S",            SAVE_FILE,              VIRTKEY, CONTROL
+    "U",            UPDATE,                 VIRTKEY, CONTROL
+END
+

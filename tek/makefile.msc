@@ -1,0 +1,69 @@
+# Makefile for PC vesion of .../plt/tek
+
+CFLAGS = -AL
+BIN = /usr/bin
+TEKLIB = libtek.lib
+OUTLIB = ..\out\libout.lib
+LIBS = $(TEKLIB) $(OUTLIB) lgrlib.lib
+
+TEKSUBS= alfa.obj alfmod.obj circen.obj esccod.obj grfmod.obj tarc.obj \
+        tcirc.obj tekcat.obj tekcvt.obj
+
+XFILES= tektty tekps tektyp tekdbg
+
+HFILES= alfcom.h arccom.h alfa.h
+CFILES= alfa.c closepl_.c cont_.c erase_.c grfmod.c line_.c move_.c \
+	openpl_.c space_.c tekcvt.c alfmod.c esccod.c tcirc.c \
+	tarc.c tekcat.c
+
+all: $(XFILES)
+
+tektty: tektty.obj $(TEKLIB) $(OUTLIB)
+	cl $(CFLAGS) tektty.obj -link $(LIBS)
+
+tektyp: tektyp.obj $(TEKLIB)
+	cl $(CFLAGS) tektyp.obj -link $(TEKLIB)
+
+tekdbg: tekdbg.obj $(TEKLIB)
+	cl $(CFLAGS) tekdbg.obj -link $(TEKLIB)
+
+tekps: tekps.obj $(TEKLIB) $(OUTLIB)
+	cl $(CFLAGS) tekps.obj -link $(LIBS)
+
+$(TEKLIB): $(TEKSUBS)
+	if exist $@ del $@
+	lib @<<temp.lnk
+	$@
+	y
+	$**;
+	;
+<<NOKEEP
+
+clean:
+	del *.obj
+	del *.bak
+	del *.log
+	del *.exe
+        del *.map
+
+../out/libout.lib :
+	cd ../out
+	make libout.lib
+	cd ../tek
+
+alfa.obj: alfcom.h font0.x font11.x
+alfmod.obj: alfcom.h arccom.h
+tektyp.obj: arccom.h
+esccod.obj: arccom.h alfcom.h tcom.h
+grfmod.obj: arccom.h tcom.h
+tekhp.obj: arccom.h
+tarc.obj:
+tcirc.obj: arccom.h tcom.h
+tekcvt.obj: alfcom.h
+tekplot.obj: arccom.h
+tektty.obj: arccom.h
+tekps.obj: arccom.h
+teksg2.obj: arccom.h
+tektyp.obj: arccom.h
+tekhp.obj: arccom.h
+tekdbg.obj: arccom.h

@@ -1,0 +1,95 @@
+# Makefile for libout on Mac
+
+VERSION = local
+CFLAGS = -O -DUNIX -DMAIN
+
+LIBS = -lm
+
+OUT_O=  area.o d0.o d1.o d2.o d3.o d4.o d5.o d6.o d7.o d8.o d9.o dranodes.o \
+	dshlin.o font0.o font11.o getarc.o getbox.o hatchare.o hollowar.o \
+	inqopa.o line.o marker.o md.o opnout.o otrans.o output.o penwid.o \
+	pythag.o resetout.o setopa.o sindeg.o skqtxx.o sktext.o solidare.o \
+	sound.o symbol.o text.o tpcl.o tppcl.o
+
+OUT_C= area.c dranodes.c dshlin.c font0.c \
+	d0.c d1.c d2.c d3.c d4.c d5.c d6.c d7.c d8.c d9.c \
+	font11.c getarc.c getbox.c hatchare.c hollowar.c inqopa.c \
+	line.c marker.c opnout.c otrans.c output.c penwid.c pythag.c \
+	resetout.c setopa.c sktext.c skqtxx.c solidare.c symbol.c text.c \
+	tpcl.c tppcl.c sindeg.c md.c sound.c
+
+CFILES= $(OUT_C)
+
+
+HFILES= copa.h cincl.h clip.h cwind.h cview.h
+
+all: tstout
+
+clean:
+	rm -f core *.o *.res tstout libout.a
+
+libout.a: $(OUT_O)
+	ar ru libout.a $(OUT_O)
+	ranlib libout.a
+
+tstout: tstout.o libout.a
+	cc $(CFLAGS) -o tstout tstout.o libout.a $(LIBS)
+
+gendat: gendat.o 
+	cc $(CFLAGS) -o gendat gendat.o $(LIBS)
+
+test: tstout
+	./tstout
+
+install: libout.a
+	cp libout.a $(ROOT)/usr/local/lib
+	ranlib $(ROOT)/usr/local/lib/libout.a
+
+# This searches the C sources and makes dependence rules
+depend:
+	grep -i '^#include *"' $(CFILES) | \
+	sed -e 's/:#include *"/: /' \
+	    -e 's/"//' \
+	    -e 's/\.c/.o/' \
+	    -e 's,../[a-zA-Z]*/,,' | \
+	awk ' { if ($$1 != prev) { print rec; rec = $$0; prev = $$1; } \
+		else { if (length(rec $$2) > 78) { print rec; rec = $$0; } \
+		       else rec = rec " " $$2 } } \
+	      END { print rec } ' > makedep
+	echo '$$r makedep' >>eddep
+	echo '/^# DO NOT DELETE THIS LINE/+1,$$d' >eddep
+	echo '$$r makedep' >>eddep
+	echo 'w' >>eddep
+	cp Makefile Makefile.bak
+	ed - Makefile < eddep
+	rm eddep makedep
+
+# DO NOT DELETE THIS LINE
+
+area.o: copa.h
+d0.o: fort.h copa.h device.h output.h
+d1.o: device.h copa.h output.h
+d2.o: device.h copa.h output.h clip.h
+d3.o: device.h copa.h output.h
+d4.o: device.h copa.h output.h
+d5.o: device.h copa.h clip.h output.h
+dranodes.o: font.h
+font0.o: font.h
+font11.o: font.h
+hatchare.o: copa.h cview.h
+hollowar.o: copa.h device.h
+inqopa.o: output.h fort.h clip.h copa.h device.h cview.h cwind.h
+line.o: copa.h cview.h
+marker.o: copa.h cview.h device.h font.h
+opnout.o: copa.h device.h font.h
+otrans.o: output.h fort.h clip.h copa.h cview.h cwind.h
+output.o: output.h fort.h font.h clip.h copa.h device.h cview.h cwind.h
+penwid.o: copa.h device.h cview.h
+resetout.o: output.h clip.h copa.h device.h cview.h cwind.h font.h
+setopa.o: output.h fort.h clip.h copa.h device.h cview.h cwind.h
+sktext.o: output.h copa.h cview.h device.h font.h
+skqtxx.o: output.h copa.h cview.h device.h font.h
+solidare.o: copa.h cview.h device.h
+symbol.o: cview.h device.h font.h
+text.o: output.h copa.h cview.h device.h
+tpcl.o: output.h clip.h device.h copa.h cview.h cwind.h

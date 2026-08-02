@@ -1,0 +1,66 @@
+.SH CURSOR MODE
+.PP
+If the plt program is writing directly to a PC graphics adaptor, then
+the user can enter a special cursor mode to identify the x,y
+coordinates of any position on the screen.
+The cursor mode is
+activated by pressing '+' (instead of [Enter])
+when the 'beep' sounds at the end of any plotted page.
+A cursor should appear at the postion
+1 inch form the bottom and 1 inch from the left side.
+The cursor can be moved in 0.01 inch increments using the cursor arrow keys.
+Holding the shift key increases the increment to 0.5 inch.
+The coordinates are
+displayed (in inches) in the upper-right corner of the screen.
+The reference point can be changed to a new position by pressing [Ins] or
+reset to the lower-left corner of the page by pressing [Del].
+Exit cursor mode by pressing '+' or [Esc].
+.SH PLOTTER SUPPORT 
+.PP
+The plt program can directly drive an HPGL pen plotter (such as the
+HP-7475) attached to a serial port on the PC.
+Make sure that the serial
+cable includes the wires needed for hardware handshaking and that the
+DOS "mode" command has been used to indicate that DOS should continue to
+retry output on time-out errors.
+For example, if the plotter is on
+COM1: and its switches are set to run at 9600 baud, use the following
+mode command:
+.sp
+.ti +1i
+mode com1:9600,N,8,1,p
+.sp
+Then redirect the output of the plt program to COM1: using the HPGL
+output mode
+.sp
+.ti +1i
+plt -m3 foo > com1:
+.sp
+The procedure should be similar (although not tested at BTNI) to output
+directly to a Tektronix 4663 pen plotter (-m0) or an Imagen laser
+printer (-m2). 
+.SH PRINTER SUPPORT
+.PP
+Two printers are supported indirectly as output devices by using
+additional programs to translate the IMPRESS output of the plt program:
+the EPSON FX-80 and the HP Laserjet II.
+Several other printer models
+are compatible with these printers and can also be used.
+The printers
+are assumed to be attached to LPT1:. 
+.PP
+The Laserjet must have sufficient memory (at least 1 Mb) to hold a full
+page of graphics.
+The output of the plt program (-m2) is translated for
+the Laserjet by a program called "imp2lj".
+The batch files pltlj.bat
+(for 75 dpi) and pltljq.bat (for 300 dpi) can be used to automate the
+use of imp2lj. 
+.sp
+.ti +1i
+pltljq foo
+.sp
+The other supported printer, the Epson FX, uses a translating program
+called "imp2fx".
+The batch files pltfx (single density) and pltfxq
+(quad density) are provided to automate the use of imp2fx. 

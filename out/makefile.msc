@@ -1,0 +1,130 @@
+# makefile to build the library "libout.lib".
+#
+# This library contains the graphics primitives used by the "plt" program.
+# Several files from the Microsoft C distribution are required:
+#
+# (1) The programs "cl", "nmake", "lib", and "link" are required.
+#
+# (2) The "large" memory model library "llibce"
+#     and the standard include files must in their default directories.
+#
+# Most recently compiled with MSC version 8.0.
+#############################################################################
+
+#CFLAGS=-AL -Gs -Oi -Zi
+#CFLAGS=-AL -Ox -Zi
+CFLAGS=-AL -Ox
+
+OFILES= output.obj text.obj area.obj line.obj marker.obj \
+    pythag.obj dshlin.obj font0.obj font11.obj dranodes.obj \
+    setopa.obj inqopa.obj tpcl.obj tppcl.obj md.obj \
+    hatchare.obj sktext.obj skqtxx.obj opnout.obj penwid.obj \
+    otrans.obj getarc.obj resetout.obj sindeg.obj \
+    d0.obj d1.obj d2.obj d3.obj d4msdos.obj d5.obj d6.obj d7.obj \
+    hollowar.obj solidare.obj getbox.obj symbol.obj
+
+CFILES= output.c text.c area.c line.c marker.c \
+    pythag.c dshlin.c font0.c font11.c dranodes.c \
+    setopa.c inqopa.c tpcl.c tppcl.c md.c \
+    hatchare.c sktext.c skqtxx.c opnout.c penwid.c \
+    otrans.c getarc.c resetout.c sindeg.c \
+    d0.c d1.c d2.c d3.c d4msdos.c d5.c d6.c d7.c \
+    hollowar.c solidare.c getbox.c symbol.c
+
+HFILES=output.h clip.h copa.h cview.h cwind.h device.h font.h fort.h
+
+tstout.exe: tstout.obj libout.lib
+	link/stack:4000/CO tstout,,,libout+lgrlib;
+
+tppcl.obj : tppcl.c
+	cl -c -AL -Oi -Gs -Zi $*.c		# can't use -Ox
+
+test: tstout.exe
+	tstout
+
+test7: tstout.exe
+	tstout 7
+
+libout.lib: $(OFILES)
+	if exist libout.lib del libout.lib
+	lib @<<libout.lnk
+	libout
+	y
+	$**;
+	;
+<<NOKEEP
+
+install: c:\usr\lib\libout.lib c:\usr\include\output.h
+
+c:\usr\lib\libout.lib : libout.lib
+	copy libout.lib c:\usr\lib\libout.lib
+
+c:\usr\include\output.h : output.h
+	copy output.h c:\usr\include\output.h
+
+uninst:
+	del c:\usr\lib\libout.lib
+	del c:\usr\include\output.h
+
+clean:
+	del *.obj
+	del *.bak
+	del *.log
+	del *.exe
+        del *.map
+	del *.lib
+	del *.pdb
+	del *.res
+	del *.o
+	del *.a
+	del tstout
+	del *.aps
+
+lint: tstout.log
+
+tstout.log: tstout.c $(CFILES)
+	lint > $@ <<lint.lnt
+	-e7?? -DMSDOS /usr/lib/co-msc
+	$**
+<<NOKEEP
+
+tstout.cgm : tstout.exe
+	tstout 6 > tstout.cgm
+
+# dependencies
+# (makedep will replace everything after this line) 
+
+area.obj: copa.h
+d0.obj: fort.h copa.h device.h output.h
+d1.obj: device.h copa.h output.h
+d2.obj: device.h copa.h output.h clip.h
+d3.obj: device.h copa.h output.h
+d4.obj: device.h copa.h output.h
+d4msdos.obj: device.h copa.h output.h clip.h
+d4next.obj: device.h copa.h clip.h output.h
+d4sun386.obj: device.h copa.h output.h clip.h plttool.icon
+d5.obj: device.h copa.h clip.h output.h
+d6.obj: device.h copa.h output.h clip.h
+d7.obj: device.h copa.h output.h
+dranodes.obj: device.h font.h
+font0.obj: font.h
+font11.obj: font.h
+hatchare.obj: copa.h cview.h
+hollowar.obj: copa.h device.h
+inqopa.obj: output.h fort.h clip.h copa.h device.h cview.h cwind.h
+line.obj: copa.h cview.h
+marker.obj: copa.h clip.h cview.h device.h font.h output.h
+md.obj: output.h clip.h device.h copa.h cview.h cwind.h
+opnout.obj: copa.h device.h output.h font.h
+otrans.obj: output.h fort.h clip.h copa.h cview.h cwind.h device.h
+output.obj: output.h fort.h font.h clip.h copa.h device.h cview.h cwind.h
+penwid.obj: copa.h device.h cview.h
+resetout.obj: output.h clip.h copa.h device.h cview.h cwind.h font.h
+setopa.obj: output.h fort.h clip.h copa.h device.h cview.h cwind.h
+skqtxx.obj: output.h copa.h cview.h device.h font.h
+sktext.obj: output.h clip.h copa.h cview.h device.h font.h
+solidare.obj: copa.h clip.h cview.h device.h
+symbol.obj: font.h
+text.obj: output.h copa.h cview.h device.h
+tpcl.obj: output.h clip.h device.h copa.h cview.h cwind.h
+tstout.obj: output.h

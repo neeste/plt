@@ -1,0 +1,70 @@
+# Makefile for DJGPP vesion of .../plt/tek
+
+BIN = c:/usr/bin
+
+CFLAGS = -O 
+MATHLIB = -lm
+OUTLIB = ../out/libout.a
+LIBS = $(TEKSUBS) $(OUTLIB) -lgrx20 -lm
+
+TEKSUBS= alfa.o alfmod.o circen.o esccod.o grfmod.o tarc.o tcirc.o \
+	tekcat.o tekcvt.o
+#PLOTSUBS= line_.o space_.o openpl_.o closepl_.o erase_.o move_.o cont_.o
+PLOTSUBS=
+
+XFILES= tektty tekps tektyp tekdbg clr tkm vtm
+
+HFILES= alfcom.h arccom.h alfa.h
+CFILES= alfa.c closepl_.c cont_.c erase_.c grfmod.c line_.c move_.c \
+	openpl_.c space_.c tekcvt.c alfmod.c esccod.c tcirc.c \
+	tarc.c tekcat.c
+
+all: $(XFILES)
+
+install: $(XFILES)
+	cp *.exe $(BIN)
+
+clean:
+	rm -f *.o *.a *.exe *~ $(XFILES)
+
+clr: clr.o 
+	gcc $(CFLAGS) -o clr clr.o 
+
+tkm: tkm.o 
+	gcc $(CFLAGS) -o tkm tkm.o 
+
+vtm: vtm.o 
+	gcc $(CFLAGS) -o vtm vtm.o 
+
+tektyp: tektyp.o $(TEKSUBS)
+	gcc $(CFLAGS) -o tektyp tektyp.o $(TEKSUBS) $(MATHLIB)
+
+tekdbg: tekdbg.o $(TEKSUBS)
+	gcc $(CFLAGS) -o tekdbg tekdbg.o $(TEKSUBS) $(MATHLIB)
+
+tektty: tektty.o $(TEKSUBS) $(OUTLIB)
+	gcc $(CFLAGS) -o tektty tektty.o $(LIBS)
+
+tekps: tekps.o $(TEKSUBS) $(OUTLIB)
+	gcc $(CFLAGS) -o tekps tekps.o $(LIBS)
+
+$(OUTLIB) :
+	cd ../out
+	make libout.a
+	cd ../tek
+
+# DO NOT DELETE THIS LINE
+
+alfa.o: alfcom.h font0.x font11.x
+alfmod.o: alfcom.h arccom.h
+tektyp.o: arccom.h
+esccod.o: arccom.h alfcom.h tcom.h
+grfmod.o: arccom.h tcom.h
+tekhp.o: arccom.h
+tarc.o:
+tcirc.o: arccom.h tcom.h
+tekcvt.o: alfcom.h
+tektty.o: arccom.h
+tekps.o: arccom.h
+tektyp.o: arccom.h
+tekdbg.o: arccom.h

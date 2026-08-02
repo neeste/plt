@@ -1,0 +1,11 @@
+header=0
+ticdir=-1
+xans=-1
+yans=-1
+xllc=0
+yllc=0
+xlen=10.3
+ylen=7.8
+symbol=1
+symsiz=-4
+5,5

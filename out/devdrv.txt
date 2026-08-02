@@ -1,0 +1,187 @@
+                                
+                                
+                                
+                       PLT Device Drivers
+                                
+The device-dependent code in the PLT program is concentrated in a
+single file for each device.  These files are referred to as
+"device drivers". The code for device number 0 is in "d0.c," etc.
+There are five essential routines that must be written for each
+device driver:
+     d_bind    - binds function addresses before opening device
+     d_open    - open the device before any plotting is done
+     d_close   - close the device after all plotting is finished
+     d_page    - identify a page break
+     d_trns    - perform the "moves" and "draws"
+In addition to the required functions, there are several optional
+functions which are implemented by higher level routines by
+default, but can be overridden by the device driver.  For
+example:
+     d_pnwd    - select the pen width
+The default version ignores line width settings.  This routine is
+usually overridden.
+
+The generation of text characters may also be done by the device
+driver.  If the device is to do character generation, two
+additional routines must be written:
+     d_text    - place a text string at a given position
+     d_qtxx    - return the extent (in inches) of a text string
+These routines must take into account the height and variable
+width of each character, the horizontal and vertical alignment,
+and the rotation angle of the text to the extent that these
+features are supported on the device.  The default routines draw
+stroke characters.  These routines are usually not overridden.
+
+If the device is to do area fills, one additional routine must be
+written:
+     d_fill    - fill a polygon with a solid color
+The vertices of the polygon are supplied to the device driver in
+along with a color code.  The default routine will fill polygons
+using up and down strokes.  This routine should be overridden if
+the device is capable of filling polygons efficiently.
+
+The specific routines which are provided by a device driver are
+indicated by assigning their names in the d_bind routine.  The
+underscore in the above names is replaced by the device number,
+so that each driver has routines with unique names.
+
+
+
+                                
+     Procedure for adding a new device driver on the IBM-PC
+
+(1) Use the file "d7.c" as a skeleton device driver and implement
+the following five device dependent functions:
+     d7open()                 - initialize device,
+                                returns "true" if successful
+     d7close()                - flush output and close device
+     d7page()                 - end current page, start new page
+     d7pnwd(pen_width)        - choose line width or pen number
+     d7trns(x, y, draw_flag)  - move or draw to position (x,y)
+
+The indicated parameters have the following definitions:
+     pen_width - Desired line width in inches or divide by
+                 0.005 inches to recover pen number.
+     x, y      - Coordinates in inches of a position on a virtual
+                 8 x 10.5 inch page.  Already clipped to page
+                 boundaries.
+     draw_flag - 0 for move and 1 for draw to given position.
+Note that the d_open routine needs to initialize several device
+dependent, global variables and return a value of one is
+successful.  See other device drivers for examples.
+
+(2) Execute the make utility by typing "nmake test7".  This will
+recompile the source code, build the "libout.lib" library, and
+execute a small test program called "tstout" with device 7
+selected as the output device.
+
+Other device drivers can be added, in a similar way, by replacing
+unneeded device drivers, so that the total number of device
+drivers is always eight.  Increasing the number of device drivers
+to more than eight would require editing the file output.c to
+call the additional d_bind functions and adding the source and
+object filenames for the additional device drivers to the
+makefile.
+
+The device 4 driver is system dependent and provides direct
+output to the console screen, if possible.  This device driver
+also includes an additional function called chkdev which returns
+a system dependent default device number.
+                                
+                                
+                                
+                 Description of device number 0
+                                
+Device number 0 is a Tektronix plotter with capabilities
+somewhere between models 4662 and 4663.  The device driver
+supports text character generation by the plotter with some
+restrictions.  The characters are assumed to be of constant width
+and the plotter is assumed to be capable of generating the
+alternate character set as font number 11.  The line widths
+indicated by the PLT file are transformed into integer pen
+numbers by multiplying the line width in inches by 200, rounding
+to the nearest integer, and forcing the result into the range
+from 1 to 9.
+
+Here are descriptions of some of the device 0 routines:
+
+d0trns(xx, yy, do_gs)
+double    xx, yy;
+int       do_gs;
+
+The parameters xx and yy are the coordinates (in inches) of a
+position on an 8 inch by 10.5 inch plotting surface.  The device
+is required to keep track of a current position on the page which
+is updated by each call to d0trns.  If do_gs is nonzero, then a
+line is drawn from the current position to the new position,
+otherwise the pen is raised before moving to the new position.
+The position is encoded into 5 graphic bytes according to
+Tektronix convention.  This provides 12 bits of resolution in
+each dimension or about 390 addressable device units per inch.
+
+d0text(x, y, pstr)
+double    x, y;
+char      *pstr;
+
+The parameters x and y are the coordinates (in inches) of a
+position on an 8 inch by 10.5 inch plotting surface.  The
+parameter pstr is a pointer to a string containing text to be
+placed at the indicated position.  Since various horizontal and
+vertical alignments are possible (left, right, centered, etc),
+the indicated position is not necessarily the lower-left corner
+of the text string.  The routine d0qtxx is called to determine
+the lower-left corner position for all possible alignments.  The
+desired height, rotation angle and slant angle are determined by
+values in the data structure "dev_":
+     dev_.chhnc     - character height in inches
+     dev_.chuxnc, dev_.chuync 
+                    - character "up" vector (indicates up
+                      direction)
+     dev_.chsxnc, dev_.chsync
+                    - character "slant" vector
+
+d0qtxx(x, y, pstr, ptxx)
+double    x, y;
+char      *pstr;
+TXX       *ptxx;
+
+The parameters x, y, and pstr are the same as for d0text.  The
+parameter ptxx is a pointer to a structure into which returned
+values will be written.  This routine computes six different
+positions on the text string: (1) the lower-left corner of the
+first character, (2) the concatenation position for following
+text, and (3) the four corners of a box which would completely
+enclose the text string.  The determination of these positions
+takes into account text size, rotation, and alignment.  The
+function d0qtxln is called to compute the length of the text
+string.
+
+The following routines are only called by d0text and not by any
+other routine; the routine names are not made external.
+
+double d0qtxln(pstr)
+char      *pstr;
+
+The parameter pstr is a pointer to a text string.  This function
+returns the length (in inches) that this text string would have
+if it were plotted, taking into account the width of each
+character.
+
+d0alrt(angle)
+double angle;
+
+Generates the Tektronix escape sequence for alpha rotation.  The
+parameter is the rotation angle in degrees.
+
+d0alsl(angle)
+double angle;
+
+Generates the Tektronix escape sequence for alpha slant.  The
+parameter is the slant angle in degrees.
+
+d0alsz(wid, hgt)
+double wid, hgt;
+
+Generates the Tektronix escape sequence for alpha size.  The
+parameters are the character height and width in inches.
+

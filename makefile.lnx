@@ -1,0 +1,69 @@
+# PLT makefile for LINUX
+
+BINDIR=$(ROOT)/usr/local/bin
+
+build:
+	make -C out
+	make -C tplt
+	make -C tek
+	make -C pltfnt
+	make -C man
+	echo Compilation complete.
+
+install: build
+	make -C out
+	make -C tplt ROOT=$(ROOT) install
+	make -C man ROOT=$(ROOT) install
+	mkdir -p $(BINDIR)
+	install -m 755 plt.sh $(BINDIR)/plt
+	echo Installation complete.
+
+uninstall:
+	make -C tplt ROOT=$(ROOT) uninstall
+	make -C man ROOT=$(ROOT) uninstall
+	rm -f $(BINDIR)/plt
+
+clean:
+	make -C out clean
+	make -C tplt clean
+	make -C tek clean
+	make -C pltfnt clean
+	make -C man clean
+	rm -f bin/[a-z]* *~ *.exe *.EXE *~
+	rm -f iplt/*~ mplt/*~ VS18/*~
+
+empty: clean
+	rm -f demo/*.exe demo/*.bak demo/wplt.*
+	rm -f demo/*.EXE demo/*.BAK demo/WPLT.*
+
+version:
+	perl version.pl
+
+pltsc.zip: clean version 
+	rm -f pltsc.zip demo/*.exe demo/*.bak
+	zip pltsc readme.sc plt.sh makefile.*
+	zip pltsc configure configure.bat
+	zip pltsc imp/makefile.* imp/*.c 
+	zip pltsc out/makefile.* out/*.c out/*.cpp out/*.h out/*.txt 
+	zip pltsc pltfnt/makefile.* pltfnt/*.c pltfnt/*.h pltfnt/*.mph 
+	zip pltsc pltfnt/*.txt
+	zip pltsc tek/makefile.* tek/*.c tek/*.h tek/*.x tek/*.tek
+	zip pltsc tplt/makefile.* tplt/*.c tplt/*.h tplt/*.txt
+	zip pltsc plots/*.*
+	zip pltsc man/Makefile man/*.*
+	zip pltsc demo/*.*
+	zip pltsc VS18/*.sln VS18/*.vcxproj VS18/*.txt VS18/*.filters VS18/*.txt 
+	zip pltsc VS18/*.rc VS18/*.ico VS18/*.def 
+	zip pltsc VS18/*.hh* VS18/demo/*.htm
+	zip pltsc version.pl plt.iss
+	zip pltsc iplt/*.* iplt/*/*.* iplt/*/*.*/*.* iplt/iTunes*
+	zip pltsc mplt/*.c mplt/*.pl mplt/*.plist mplt/*.sh mplt/*.icns 
+	zip pltsc mplt/Makefile mplt/*/*.txt
+	zip -r pltsc mplt/*.lproj mplt/*.pmdoc mplt/*.xcodeproj
+
+zipsrc: pltsc.zip 
+dist: zipsrc 
+	mkdir -p ../dist
+	cp -f pltsc.zip ../dist
+	rm -f pltsc.zip 
+

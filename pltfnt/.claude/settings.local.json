@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \"import fontTools, shapely, PIL\")",
+      "Bash(python3 -m venv venv)",
+      "Bash(./venv/bin/pip install *)",
+      "Bash(./venv/bin/python -c \"import fontTools, shapely, PIL; print\\('ok', fontTools.version, shapely.__version__\\)\")",
+      "Bash(/private/tmp/claude-502/-Users-neely-Library-CloudStorage-OneDrive-FatherFlanagan-sBoysHome-STN-RC-src-plt-pltfnt/26f97a1d-cb57-4a9d-98d8-4022072aba76/scratchpad/venv/bin/python pltfnt2ttf.py stdfnt.txt --name \"PLT Standard\")",
+      "Bash(./venv/bin/python -)",
+      "Bash(grep -rln \"CIRC\" \"/Users/neely/Library/CloudStorage/OneDrive-FatherFlanagan'sBoysHome/STN/RC_src/plt\" --include=\"*.c\" --include=\"*.h\" | head)"
+    ]
+  }
+}

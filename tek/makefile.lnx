@@ -1,0 +1,76 @@
+# Makefile for LINUX vesion of .../plt/tek
+
+BINDIR = $(ROOT)/usr/local/bin
+
+CFLAGS = -O
+LFLAGS = -L/usr/X11R6/lib
+MATHLIB = -lm
+TEKLIB = libtek.a
+OUTLIB = ../out/libout.a
+LIBS = $(TEKLIB) $(OUTLIB) -lX11 -lm
+
+TEKSUBS= alfa.o alfmod.o circen.o esccod.o grfmod.o tarc.o tcirc.o \
+	tekcat.o tekcvt.o
+#PLOTSUBS= line_.o space_.o openpl_.o closepl_.o erase_.o move_.o cont_.o
+PLOTSUBS=
+
+XFILES= tektty tekps tektyp tekdbg clr tkm vtm
+
+HFILES= alfcom.h arccom.h alfa.h
+CFILES= alfa.c closepl_.c cont_.c erase_.c grfmod.c line_.c move_.c \
+	openpl_.c space_.c tekcvt.c alfmod.c esccod.c tcirc.c \
+	tarc.c tekcat.c
+
+all: $(XFILES)
+
+install: $(XFILES)
+	mkdir -p $(BINDIR)
+	for i in $(XFILES); do \
+		install  -m 111 -s $$i $(BINDIR)/$$i; \
+	done
+
+clean:
+	rm -f *.o *.a *.exe *~ $(XFILES)
+
+clr: clr.o 
+	cc $(CFLAGS) $(LFLAGS) -o clr clr.o 
+
+tkm: tkm.o 
+	cc $(CFLAGS) $(LFLAGS) -o tkm tkm.o 
+
+vtm: vtm.o 
+	cc $(CFLAGS) $(LFLAGS) -o vtm vtm.o 
+
+tektyp: tektyp.o $(TEKLIB)
+	cc $(CFLAGS) $(LFLAGS) -o tektyp tektyp.o $(TEKLIB) $(MATHLIB)
+
+tekdbg: tekdbg.o $(TEKLIB)
+	cc $(CFLAGS) $(LFLAGS) -o tekdbg tekdbg.o $(TEKLIB) $(MATHLIB)
+
+tektty: tektty.o $(TEKLIB) $(OUTLIB)
+	cc $(CFLAGS) $(LFLAGS) -o tektty tektty.o $(LIBS)
+
+tekps: tekps.o $(TEKLIB) $(OUTLIB)
+	cc $(CFLAGS) $(LFLAGS) -o tekps tekps.o $(LIBS)
+
+$(TEKLIB): $(TEKSUBS)
+	ar rs libtek.a $(TEKSUBS)
+
+$(OUTLIB) :
+	cd ../out; make libout.a
+
+# DO NOT DELETE THIS LINE
+
+alfa.o: alfcom.h font0.x font11.x
+alfmod.o: alfcom.h arccom.h
+tektyp.o: arccom.h
+esccod.o: arccom.h alfcom.h tcom.h
+grfmod.o: arccom.h tcom.h
+tekhp.o: arccom.h
+tarc.o:
+tcirc.o: arccom.h tcom.h
+tekcvt.o: alfcom.h
+tektty.o: arccom.h
+tekps.o: arccom.h
+tektyp.o: arccom.h
+tekdbg.o: arccom.h

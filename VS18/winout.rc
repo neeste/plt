@@ -1,0 +1,46 @@
+/* winout.rc */
+
+#include <windows.h>
+#include "../out/winout.h"
+
+#define IDOK                 1
+
+WINOUT_ICON  ICON    DISCARDABLE     "WINOUT.ICO"
+
+WINOUT MENU DISCARDABLE
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Replot",                     REPLOT
+        MENUITEM "&Print	^P",            PRINT_FILE
+        MENUITEM "E&xit",                       EXIT
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About",                      MN_HELP_ABOUT
+    END
+END
+
+ABOUTBOX DIALOG DISCARDABLE  22, 17, 167, 74
+CAPTION "About TSTOUT"
+FONT 8, "System"
+BEGIN
+    PUSHBUTTON      "OK", IDOK, 132, 2, 32, 14,WS_GROUP
+    ICON            WINOUT_ICON, 101, 3, 2, 18, 20
+
+    LTEXT "TSTOUT",     102, 25,  2, 100, 8
+    CTEXT COPY,         103,  2, 34, 165, 8
+    CTEXT BTNRH,        104,  2, 42, 165, 18
+    CTEXT RIGHTS,       105,  2, 50, 165, 18
+END
+
+MAINACC ACCELERATORS
+BEGIN
+    VK_RETURN,      ENTER,              VIRTKEY
+    VK_F1,          MN_HELP_ABOUT,      VIRTKEY
+    VK_F2,          REPLOT,             VIRTKEY
+    "A",            SET_ASPECT,         VIRTKEY, CONTROL
+    "P",            PRINT_FILE,         VIRTKEY, CONTROL
+    "R",            REPLOT,             VIRTKEY, CONTROL
+    "S",            SET_SIZE,           VIRTKEY, CONTROL
+END
