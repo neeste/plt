@@ -1,0 +1,261 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="7.56in" height="5.76in" viewbox="0 0 756 576"
+    xmlns="http://www.w3.org/2000/svg" version="1.1">
+<title>
+plots/c16.plt
+</title>
+<desc>
+Creator: BTNRH PLT
+Date: Sun Aug  2 06:51:18 2026
+</desc>
+<g style="stroke-linecap:round;stroke-linejoin:round">
+<g id="page 1">
+<clipPath id="cp1"> <path d="
+M 0.0 0.0 0.0 576.0 756.0 576.0 756.0 0.0"/> </clipPath>
+<path style="stroke:none;fill:#FFFFFF;" d="
+M 0.0 0.0L 0.0 576.0L 756.0 576.0L 756.0 0.0"/>
+<path style="stroke:none;fill:#000000;"
+clip-path="url(#cp1)" d="
+M 0.0 144.0
+L 0.0 0.0
+L 189.0 0.0
+L 189.0 144.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 0.0 144.0
+L 0.0 0.0
+L 189.0 0.0
+L 189.0 144.0
+L 0.0 144.0
+"/>
+<path style="stroke:none;fill:#555555;"
+clip-path="url(#cp1)" d="
+M 189.0 144.0
+L 189.0 0.0
+L 378.0 0.0
+L 378.0 144.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 189.0 144.0
+L 189.0 0.0
+L 378.0 0.0
+L 378.0 144.0
+L 189.0 144.0
+"/>
+<path style="stroke:none;fill:#0000AA;"
+clip-path="url(#cp1)" d="
+M 0.0 288.0
+L 0.0 144.0
+L 189.0 144.0
+L 189.0 288.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 0.0 288.0
+L 0.0 144.0
+L 189.0 144.0
+L 189.0 288.0
+L 0.0 288.0
+"/>
+<path style="stroke:none;fill:#5555FF;"
+clip-path="url(#cp1)" d="
+M 189.0 288.0
+L 189.0 144.0
+L 378.0 144.0
+L 378.0 288.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 189.0 288.0
+L 189.0 144.0
+L 378.0 144.0
+L 378.0 288.0
+L 189.0 288.0
+"/>
+<path style="stroke:none;fill:#00AA00;"
+clip-path="url(#cp1)" d="
+M 378.0 144.0
+L 378.0 0.0
+L 567.0 0.0
+L 567.0 144.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 378.0 144.0
+L 378.0 0.0
+L 567.0 0.0
+L 567.0 144.0
+L 378.0 144.0
+"/>
+<path style="stroke:none;fill:#55FF55;"
+clip-path="url(#cp1)" d="
+M 567.0 144.0
+L 567.0 0.0
+L 756.0 0.0
+L 756.0 144.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 567.0 144.0
+L 567.0 0.0
+L 756.0 0.0
+L 756.0 144.0
+L 567.0 144.0
+"/>
+<path style="stroke:none;fill:#00AAAA;"
+clip-path="url(#cp1)" d="
+M 378.0 288.0
+L 378.0 144.0
+L 567.0 144.0
+L 567.0 288.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 378.0 288.0
+L 378.0 144.0
+L 567.0 144.0
+L 567.0 288.0
+L 378.0 288.0
+"/>
+<path style="stroke:none;fill:#55FFFF;"
+clip-path="url(#cp1)" d="
+M 567.0 288.0
+L 567.0 144.0
+L 756.0 144.0
+L 756.0 288.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 567.0 288.0
+L 567.0 144.0
+L 756.0 144.0
+L 756.0 288.0
+L 567.0 288.0
+"/>
+<path style="stroke:none;fill:#AA0000;"
+clip-path="url(#cp1)" d="
+M 0.0 432.0
+L 0.0 288.0
+L 189.0 288.0
+L 189.0 432.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 0.0 432.0
+L 0.0 288.0
+L 189.0 288.0
+L 189.0 432.0
+L 0.0 432.0
+"/>
+<path style="stroke:none;fill:#FF5555;"
+clip-path="url(#cp1)" d="
+M 189.0 432.0
+L 189.0 288.0
+L 378.0 288.0
+L 378.0 432.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 189.0 432.0
+L 189.0 288.0
+L 378.0 288.0
+L 378.0 432.0
+L 189.0 432.0
+"/>
+<path style="stroke:none;fill:#AA00AA;"
+clip-path="url(#cp1)" d="
+M 0.0 576.0
+L 0.0 432.0
+L 189.0 432.0
+L 189.0 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 0.0 576.0
+L 0.0 432.0
+L 189.0 432.0
+L 189.0 576.0
+L 0.0 576.0
+"/>
+<path style="stroke:none;fill:#FF55FF;"
+clip-path="url(#cp1)" d="
+M 189.0 576.0
+L 189.0 432.0
+L 378.0 432.0
+L 378.0 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 189.0 576.0
+L 189.0 432.0
+L 378.0 432.0
+L 378.0 576.0
+L 189.0 576.0
+"/>
+<path style="stroke:none;fill:#AAAA00;"
+clip-path="url(#cp1)" d="
+M 378.0 432.0
+L 378.0 288.0
+L 567.0 288.0
+L 567.0 432.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 378.0 432.0
+L 378.0 288.0
+L 567.0 288.0
+L 567.0 432.0
+L 378.0 432.0
+"/>
+<path style="stroke:none;fill:#FFFF55;"
+clip-path="url(#cp1)" d="
+M 567.0 432.0
+L 567.0 288.0
+L 756.0 288.0
+L 756.0 432.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 567.0 432.0
+L 567.0 288.0
+L 756.0 288.0
+L 756.0 432.0
+L 567.0 432.0
+"/>
+<path style="stroke:none;fill:#AAAAAA;"
+clip-path="url(#cp1)" d="
+M 378.0 576.0
+L 378.0 432.0
+L 567.0 432.0
+L 567.0 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 378.0 576.0
+L 378.0 432.0
+L 567.0 432.0
+L 567.0 576.0
+L 378.0 576.0
+"/>
+<path style="stroke:none;fill:#FFFFFF;"
+clip-path="url(#cp1)" d="
+M 567.0 576.0
+L 567.0 432.0
+L 756.0 432.0
+L 756.0 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:1.92;"
+clip-path="url(#cp1)" d="
+M 567.0 576.0
+L 567.0 432.0
+L 756.0 432.0
+L 756.0 576.0
+L 567.0 576.0
+"/>
+</g><!-- page 1 -->
+</g><!-- EOF -->
+</svg>

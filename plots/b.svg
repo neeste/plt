@@ -1,0 +1,237 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="7.56in" height="5.76in" viewbox="0 0 756 576"
+    xmlns="http://www.w3.org/2000/svg" version="1.1">
+<title>
+plots/b.plt
+</title>
+<desc>
+Creator: BTNRH PLT
+Date: Sun Aug  2 06:51:18 2026
+</desc>
+<g style="stroke-linecap:round;stroke-linejoin:round">
+<g id="page 1">
+<clipPath id="cp1"> <path d="
+M 0.0 0.0 0.0 576.0 756.0 576.0 756.0 0.0"/> </clipPath>
+<path style="stroke:none;fill:#FFFFFF;" d="
+M 0.0 0.0L 0.0 576.0L 756.0 576.0L 756.0 0.0"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 14.4
+L 0.0 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 576.0
+L 741.6 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 576.0
+L 741.6 14.4
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 14.4
+L 0.0 14.4
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 14.4
+L 16.3 14.4
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 126.7
+L 16.3 126.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 239.0
+L 16.3 239.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 351.4
+L 16.3 351.4
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 463.7
+L 16.3 463.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 576.0
+L 16.3 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 576.0
+L 0.0 559.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 148.3 576.0
+L 148.3 559.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 296.6 576.0
+L 296.6 559.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 445.0 576.0
+L 445.0 559.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 593.3 576.0
+L 593.3 559.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 576.0
+L 741.6 559.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 576.0
+L 725.3 576.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 463.7
+L 725.3 463.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 351.4
+L 725.3 351.4
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 239.0
+L 725.3 239.0
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 126.7
+L 725.3 126.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 14.4
+L 725.3 14.4
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 741.6 14.4
+L 741.6 30.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 593.3 14.4
+L 593.3 30.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 445.0 14.4
+L 445.0 30.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 296.6 14.4
+L 296.6 30.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 148.3 14.4
+L 148.3 30.7
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:3.26;"
+clip-path="url(#cp1)" d="
+M 0.0 14.4
+L 0.0 30.7
+"/>
+<path style="stroke:none;fill:#FFFFFF;"
+clip-path="url(#cp1)" d="
+M 522.0 295.2
+L 521.2 279.7
+L 518.9 264.7
+L 515.2 250.2
+L 510.1 236.3
+L 503.8 223.1
+L 496.2 210.7
+L 487.5 199.0
+L 477.7 188.3
+L 467.0 178.5
+L 455.3 169.8
+L 442.9 162.2
+L 429.7 155.9
+L 415.8 150.8
+L 401.3 147.1
+L 386.3 144.8
+L 370.8 144.0
+L 355.3 144.8
+L 340.3 147.1
+L 325.8 150.8
+L 311.9 155.9
+L 298.7 162.2
+L 286.3 169.8
+L 274.6 178.5
+L 263.9 188.3
+L 254.1 199.0
+L 245.4 210.7
+L 237.8 223.1
+L 231.5 236.3
+L 226.4 250.2
+L 222.7 264.7
+L 220.4 279.7
+L 219.6 295.2
+L 220.4 310.7
+L 222.7 325.7
+L 226.4 340.2
+L 231.5 354.1
+L 237.8 367.3
+L 245.4 379.7
+L 254.1 391.4
+L 263.9 402.1
+L 274.6 411.9
+L 286.3 420.6
+L 298.7 428.2
+L 311.9 434.5
+L 325.8 439.6
+L 340.3 443.3
+L 355.3 445.6
+L 370.8 446.4
+L 386.3 445.6
+L 401.3 443.3
+L 415.8 439.6
+L 429.7 434.5
+L 442.9 428.2
+L 455.3 420.6
+L 467.0 411.9
+L 477.7 402.1
+L 487.5 391.4
+L 496.2 379.7
+L 503.8 367.3
+L 510.1 354.1
+L 515.2 340.2
+L 518.9 325.7
+L 521.2 310.7
+L 522.0 295.2
+"/>
+<path style="fill:none;stroke:#000000;stroke-width:2.17;"
+clip-path="url(#cp1)" d="
+M 522.0 295.2
+C 522.0 211.7 454.3 144.0 370.8 144.0
+C 287.3 144.0 219.6 211.7 219.6 295.2
+C 219.6 378.7 287.3 446.4 370.8 446.4
+C 454.3 446.4 522.0 378.7 522.0 295.2
+"/>
+</g><!-- page 1 -->
+</g><!-- EOF -->
+</svg>
