@@ -38,7 +38,7 @@ build: version
 	clang -arch x86_64 -arch arm64 -O2 -framework Cocoa -Wstrict-prototypes -Wdeprecated-non-prototype -o build/Release/Plt.app/Contents/MacOS/Plt macplt.m d4mac.c $$(echo "$(TPLTF)" | tr ' ' '\n' | grep '\.c$$' | sed 's|^|tplt/|') $$(echo "$(OUT_F)" | tr ' ' '\n' | grep '\.c$$' | sed 's|^|out/|') -I. -I./out
 	@VER=$$(grep 'define REV' ../tplt/version.h | sed 's/.*Version: \([0-9.]*\).*/\1/') ; \
 	VDT=$$(grep 'define REV' ../tplt/version.h | sed 's/.*Date: \([^"]*\).*/\1/') ; \
-	echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>Plt</string><key>CFBundleIdentifier</key><string>com.steveneely.Plt</string><key>CFBundleIconFile</key><string>Plt.icns</string><key>CFBundleName</key><string>Plt</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleShortVersionString</key><string>'$$VER'</string><key>CFBundleVersion</key><string>'$$VER'</string><key>NSHumanReadableCopyright</key><string>Date: '$$VDT'</string><key>NSPrincipalClass</key><string>NSApplication</string><key>CFBundleHelpBookFolder</key><string>Plt.help</string><key>CFBundleHelpBookName</key><string>Plt Manual</string><key>CFBundleDocumentTypes</key><array><dict><key>CFBundleTypeExtensions</key><array><string>plt</string></array><key>CFBundleTypeIconFile</key><string>Plt.icns</string><key>CFBundleTypeName</key><string>PLT Script</string><key>CFBundleTypeRole</key><string>Editor</string><key>LSHandlerRank</key><string>Owner</string></dict></array></dict></plist>' > build/Release/Plt.app/Contents/Info.plist
+	echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>Plt</string><key>CFBundleIdentifier</key><string>com.steveneely.Plt</string><key>CFBundleIconFile</key><string>Plt.icns</string><key>CFBundleName</key><string>Plt</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleShortVersionString</key><string>'$$VER'</string><key>CFBundleVersion</key><string>'$$VER'</string><key>NSHumanReadableCopyright</key><string>Date: '$$VDT'</string><key>NSPrincipalClass</key><string>NSApplication</string><key>CFBundleHelpBookFolder</key><string>Plt.help</string><key>CFBundleHelpBookName</key><string>Plt Manual</string><key>CFBundleDocumentTypes</key><array><dict><key>CFBundleTypeExtensions</key><array><string>plt</string></array><key>CFBundleTypeIconFile</key><string>Plt.icns</string><key>CFBundleTypeName</key><string>PLT Script</string><key>CFBundleTypeRole</key><string>Editor</string><key>LSHandlerRank</key><string>Owner</string><key>LSItemContentTypes</key><array><string>com.steveneely.plt-script</string></array></dict></array><key>UTExportedTypeDeclarations</key><array><dict><key>UTTypeIdentifier</key><string>com.steveneely.plt-script</string><key>UTTypeDescription</key><string>PLT Script</string><key>UTTypeConformsTo</key><array><string>public.text</string></array><key>UTTypeTagSpecification</key><dict><key>public.filename-extension</key><array><string>plt</string></array></dict></dict></array></dict></plist>' > build/Release/Plt.app/Contents/Info.plist
 	cp Plt.icns build/Release/Plt.app/Contents/Resources/
 	cp -R Plt.help build/Release/Plt.app/Contents/Resources/
 	xattr -cr build/Release/Plt.app
@@ -48,11 +48,13 @@ package: build
 	rm -rf package/BTNRH
 	mkdir package/BTNRH
 	cp logo.plt package/BTNRH
-	cp -R build/Release/Plt.app package/BTNRH
+	cp -a build/Release/Plt.app package/BTNRH
 	$(PM) package/Plt.pkgproj
 
 install: package
 	installer -pkg $(PKG) -target /
+	xattr -cr /Applications/BTNRH/Plt.app
+	codesign -s - --force --deep /Applications/BTNRH/Plt.app
 
 zipmac: package
 	zip -jr plt-mac $(PKG)
