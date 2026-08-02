@@ -33,9 +33,9 @@ version:
 
 build: version 
 	rm -rf build
-	xcodebuild
-	xcodebuild -target Plt
-	xcodebuild -target TestOut
+	xcodebuild CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO MACOSX_DEPLOYMENT_TARGET=10.13
+	xcodebuild -target Plt CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO MACOSX_DEPLOYMENT_TARGET=10.13
+	xcodebuild -target TestOut CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO MACOSX_DEPLOYMENT_TARGET=10.13
 
 package: build 
 	rm -rf package/BTNRH
