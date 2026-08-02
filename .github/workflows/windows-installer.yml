@@ -1,0 +1,44 @@
+name: Build Windows Installer
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Install HTML Help Workshop
+        run: choco install htmlhelpworkshop -y
+
+      - name: Compile Help File (wplt.chm)
+        working-directory: VS18
+        # hhc.exe returns 1 on success, so we use '|| exit 0' to avoid failing the step
+        run: |
+          & "C:\Program Files (x86)\HTML Help Workshop\hhc.exe" wplt.hhp || exit 0
+
+      - name: Build wplt.exe
+        working-directory: VS18
+        # The VS project might be set to x86 or Win32, trying Win32 which is standard for older VS projects
+        run: msbuild plt.sln /p:Configuration=Release /restore
+
+      - name: Compile Inno Setup Installer
+        run: iscc /O"Output" /F"PltSetup" plt.iss
+
+      - name: Upload Installer Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Plt-Windows-Installer
+          path: Output/PltSetup.exe
