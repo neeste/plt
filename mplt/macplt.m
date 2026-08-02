@@ -381,7 +381,11 @@ void epsfix(char *sfn) {
         }
     }
     
-    [self openPlot:fileToOpen];
+    if (fileToOpen.length > 0) {
+        [self openPlot:fileToOpen];
+    } else if ([[PlotView getFileName] length] == 0) {
+        [self openPlot:@""];
+    }
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
