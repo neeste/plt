@@ -33,7 +33,22 @@ html_footer = """
 </html>
 """
 
-plt_files = [f for f in os.listdir("plots") if f.endswith(".plt")]
+ignore_list = {
+    "a.plt", "ang.plt", "arrows.plt", "b.plt", "bdat.plt", "bez.plt",
+    "bigbox.plt", "btni.plt", "c.plt", "cd.plt", "circles.plt", "cl.plt",
+    "cs.plt", "cumu.plt", "dblerr.plt", "ega.plt", "errbar.plt", "ff.plt",
+    "fig1.plt", "fig2.plt", "fig3.plt", "fig4.plt", "fig5.plt", "fig6.plt",
+    "fig7.plt", "fig8.plt", "fig9.plt", "fnt.plt", "fontgeom.plt", "fonts.plt",
+    "for.plt", "g.plt", "graysymb.plt", "grid.plt", "h.plt", "histo.plt",
+    "hp.plt", "key.plt", "kw.plt", "l.plt", "lw.plt", "mc.plt", "msg.plt",
+    "n.plt", "ni.plt", "norm.plt", "pat.plt", "qerb.plt", "random.plt",
+    "rect.plt", "roex.plt", "rsqr.plt", "rt.plt", "slide.plt", "soae.plt",
+    "sort.plt", "sp.plt", "sqrt.plt", "ss.plt", "star.plt", "sufi.plt",
+    "symmap.plt", "tp.plt", "twinkle.plt", "vbc2.plt", "wave.plt", "xx.plt",
+    "ztop.plt"
+}
+
+plt_files = [f for f in os.listdir("plots") if f.endswith(".plt") and f not in ignore_list]
 plt_files.sort()
 
 success_files = []
