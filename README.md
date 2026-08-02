@@ -25,3 +25,4 @@ Visual Studio project files are available for building on Windows.
 1. Open the `VS18` directory.
 2. Open the `plt.sln` solution file in Visual Studio.
 3. Build the solution using the Visual Studio IDE (`Build` > `Build Solution`).
+# plt
