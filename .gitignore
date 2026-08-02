@@ -19,7 +19,8 @@ mplt/build/
 build/
 *~
 package/*.pkg
-
+mplt/package/*.pkg
+mplt/package/BTNRH/
 # Visual Studio files
 .vs/
 *.suo
