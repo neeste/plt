@@ -67,3 +67,6 @@ dist: zipsrc
 	cp -f pltsc.zip ../dist
 	rm -f pltsc.zip 
 
+docs:
+	pandoc UserGuide.md -o UserGuide.docx
+	echo "Generated UserGuide.docx"
