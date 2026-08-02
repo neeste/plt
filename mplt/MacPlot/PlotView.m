@@ -174,6 +174,83 @@ static NSString       *file_name = @"";
     CGRect rect= CGRectMake(0, 0, bmw, bmh);
     return (page == 1) ? rect : NSZeroRect;
 }
+
+#define limit(x,y,z) (((y)<(x))?x:(((y)>(z))?z:y))
+
+- (BOOL)acceptsFirstResponder {
+    return YES;
+}
+
+- (void)keyDown:(NSEvent *)event {
+    int page = curpage;
+    unsigned short ch = [event keyCode];
+    // 116 = page up, 126 = arrow up
+    if (ch == 116 || ch == 126) {
+        page--;
+    } else if (ch == 121 || ch == 125 || ch == 36) { // 121 = page down, 125 = arrow down, 36 = enter
+        page++;
+    }
+    if (curpage != page) {
+        curpage = (page < 1) ? 1 : page;
+        [self setNeedsDisplay:YES];
+    }
+}
+
+- (void)mouseDown:(NSEvent *)event {
+    NSPoint loc = [self convertPoint:[event locationInWindow] fromView:nil];
+    NSInteger clicks = [event clickCount];
+    loc.y = bmh - loc.y; // Flip Y coordinate to match internal representation
+    
+    if (clicks == 2) {
+        if (zoom == 1) {
+            orgn.x -= loc.x - orgn.x;
+            orgn.y -= loc.y - orgn.y;
+            zoom = 2;
+        } else {
+            orgn.x = 0;
+            orgn.y = 0;
+            zoom = 1;
+        }
+        [self setNeedsDisplay:YES];
+    } else {
+        int inf_mode = ([event modifierFlags] & NSEventModifierFlagOption) ? 1 : 0;
+        info_line(vu_ctx, loc.x - orgn.x, loc.y - orgn.y, bmw, bmh, inf_mode);
+        [self setNeedsDisplay:YES];
+    }
+}
+
+- (void)rightMouseDown:(NSEvent *)event {
+    NSPoint loc = [self convertPoint:[event locationInWindow] fromView:nil];
+    loc.y = bmh - loc.y;
+    
+    float zf = 1.4142136;
+    if ([event modifierFlags] & NSEventModifierFlagOption) {
+        zf = 1 / zf;
+    }
+    if (zf < sqrt(1.4142136) / zoom) {
+        zf = 1 / zoom;
+    }
+    
+    orgn.x -= (loc.x - orgn.x) * (zf - 1);
+    orgn.y -= (loc.y - orgn.y) * (zf - 1);
+    zoom *= zf;
+    orgn.x -= (loc.x - bmw / 2) / 2;
+    orgn.y -= (loc.y - bmh / 2) / 2;
+    
+    orgn.x = limit(-bmw * (zoom - 1), orgn.x, 0);
+    orgn.y = limit(-bmh * (zoom - 1), orgn.y, 0);
+    [self setNeedsDisplay:YES];
+}
+
+- (void)mouseDragged:(NSEvent *)event {
+    orgn.x += [event deltaX];
+    orgn.y += [event deltaY]; // deltaY is naturally matching because delta Y is inverted in Cocoa events already (down is positive)
+    
+    orgn.x = limit(-bmw * (zoom - 1), orgn.x, 0);
+    orgn.y = limit(-bmh * (zoom - 1), orgn.y, 0);
+    [self setNeedsDisplay:YES];
+}
+
 @end
 
 //--------------------------------------------------------------------------

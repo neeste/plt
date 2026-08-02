@@ -394,6 +394,7 @@ setclip(void)
     iy2 = YTRAN(cclip_.tcx2 , cclip_.tcy2);
     if (cx1 != ix1 || cy1 != iy1 
 	|| cx2 != ix2 || cy2 != iy2) {
+	CGContextResetClip(ctx);
 	CGContextBeginPath(ctx);
 	CGContextMoveToPoint(ctx, ix1, iy1);
 	CGContextAddLineToPoint(ctx, ix2, iy1);
