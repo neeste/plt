@@ -60,7 +60,11 @@ static NSString     *editApp = @"TextEdit";
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 @property (strong) NSWindow *window;
 @property (strong) PlotView *plotView;
+@property (nonatomic, strong) dispatch_source_t fileMonitor;
+@property (nonatomic) int fileMonitorDescriptor;
 - (void)openPlot:(NSString *)filename;
+- (void)startMonitoringFile:(NSString *)path;
+- (void)stopMonitoringFile;
 - (IBAction)chooseFile:(id)sender;
 - (IBAction)editFile:(id)sender;
 - (IBAction)showHelp:(id)sender;
@@ -353,6 +357,44 @@ void epsfix(char *sfn) {
 // --- AppDelegate Implementation ---
 @implementation AppDelegate
 
+- (void)stopMonitoringFile {
+    if (self.fileMonitor) {
+        dispatch_source_cancel(self.fileMonitor);
+        self.fileMonitor = nil;
+    }
+}
+
+- (void)startMonitoringFile:(NSString *)path {
+    [self stopMonitoringFile];
+    int fd = open([path fileSystemRepresentation], O_EVTONLY);
+    if (fd < 0) return;
+    
+    self.fileMonitorDescriptor = fd;
+    self.fileMonitor = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, fd, DISPATCH_VNODE_WRITE | DISPATCH_VNODE_EXTEND | DISPATCH_VNODE_DELETE | DISPATCH_VNODE_RENAME, dispatch_get_main_queue());
+    
+    dispatch_source_set_event_handler(self.fileMonitor, ^{
+        unsigned long flags = dispatch_source_get_data(self.fileMonitor);
+        if ((flags & DISPATCH_VNODE_DELETE) || (flags & DISPATCH_VNODE_RENAME)) {
+            [self stopMonitoringFile];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self startMonitoringFile:path];
+                [self.plotView setNeedsDisplay:YES];
+            });
+        } else {
+            [self.plotView setNeedsDisplay:YES];
+        }
+    });
+    
+    dispatch_source_set_cancel_handler(self.fileMonitor, ^{
+        if (self.fileMonitorDescriptor != -1) {
+            close(self.fileMonitorDescriptor);
+            self.fileMonitorDescriptor = -1;
+        }
+    });
+    
+    dispatch_resume(self.fileMonitor);
+}
+
 - (void)openDocument:(id)sender {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     [panel setCanChooseFiles:YES];
@@ -414,6 +456,10 @@ void epsfix(char *sfn) {
     }];
 }
 - (void)openPlot:(NSString *)filename {
+    [self stopMonitoringFile];
+    if (filename.length > 0) {
+        [self startMonitoringFile:filename];
+    }
     [PlotView setFileName:filename];
     if (!self.window) {
         NSRect frame = NSMakeRect(0, 0, 1050, 800);
@@ -479,7 +525,12 @@ void epsfix(char *sfn) {
 - (IBAction)showHelp:(id)sender {
     NSString *helpPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Plt.help/Contents/Resources/PltHelp.html"];
     if ([[NSFileManager defaultManager] fileExistsAtPath:helpPath]) {
-        [[NSWorkspace sharedWorkspace] openFile:helpPath];
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL fileURLWithPath:helpPath]];
+    } else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setMessageText:@"Help File Not Found"];
+        [alert setInformativeText:[NSString stringWithFormat:@"Could not find help file at %@", helpPath]];
+        [alert runModal];
     }
 }
 - (IBAction)printFile:(id)sender {
@@ -560,20 +611,7 @@ int main(int argc, const char * argv[]) {
         NSMenuItem *printMenuItem = [[NSMenuItem alloc] initWithTitle:@"Print..." action:@selector(print:) keyEquivalent:@"p"];
         [fileMenu addItem:printMenuItem];
         
-        // 3. Edit Menu
-        NSMenuItem *editMenuMenuItem = [[NSMenuItem alloc] init];
-        [menubar addItem:editMenuMenuItem];
-        NSMenu *editMenu = [[NSMenu alloc] initWithTitle:@"Edit"];
-        [editMenuMenuItem setSubmenu:editMenu];
-        
-        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Undo" action:@selector(undo:) keyEquivalent:@"z"]];
-        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Redo" action:@selector(redo:) keyEquivalent:@"Z"]];
-        [editMenu addItem:[NSMenuItem separatorItem]];
-        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Cut" action:@selector(cut:) keyEquivalent:@"x"]];
-        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Copy" action:@selector(copy:) keyEquivalent:@"c"]];
-        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Paste" action:@selector(paste:) keyEquivalent:@"v"]];
-        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Delete" action:@selector(delete:) keyEquivalent:@""]];
-        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Select All" action:@selector(selectAll:) keyEquivalent:@"a"]];
+
         
         NSLog(@"starting [app run]");
         [app run];
