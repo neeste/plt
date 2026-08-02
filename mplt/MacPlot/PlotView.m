@@ -46,7 +46,8 @@ static NSString       *file_name = @"";
     return [NSString stringWithUTF8String:filename];
 }
 + (void)setFileName:(NSString *_Nullable)nameFile {
-    file_name = nameFile;
+    [file_name autorelease];
+    file_name = [nameFile copy];
     strncpy(filename, [nameFile UTF8String], MAXPATH);
     if (strlen(filename)) {
         curpage = setpage = 1;
@@ -146,7 +147,8 @@ static NSString       *file_name = @"";
         } else {
             [self deleteErrorLog];
         }
-        elog_time = file_time;
+        [elog_time autorelease];
+        elog_time = [file_time retain];
     }
 }
 - (void)deleteErrorLog {
