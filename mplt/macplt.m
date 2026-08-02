@@ -513,72 +513,59 @@ int main(int argc, const char * argv[]) {
         strongDelegate = delegate;
         app.delegate = delegate;
         
-        // Build the Menu Bar
+        // Build the Menu
         NSMenu *menubar = [[NSMenu alloc] init];
         [app setMainMenu:menubar];
         
-        // --- 1. App Menu ---
+        // 1. App Menu
         NSMenuItem *appMenuItem = [[NSMenuItem alloc] init];
         [menubar addItem:appMenuItem];
-        
-        NSMenu *appMenu = [[NSMenu alloc] initWithTitle:@"Plt"];
-        
-        // About Plt
-        NSMenuItem *aboutMenuItem = [[NSMenuItem alloc] initWithTitle:@"About Plt"
-                                                               action:@selector(orderFrontStandardAboutPanel:)
-                                                        keyEquivalent:@""];
-        [appMenu addItem:aboutMenuItem];
-        [appMenu addItem:[NSMenuItem separatorItem]];
-        
-        // Quit
-        NSMenuItem *quitMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quit Plt"
-                                                              action:@selector(terminate:)
-                                                       keyEquivalent:@"q"];
-        [appMenu addItem:quitMenuItem];
+        NSMenu *appMenu = [[NSMenu alloc] init];
         [appMenuItem setSubmenu:appMenu];
         
-        // --- 2. File Menu ---
+        NSMenuItem *aboutMenuItem = [[NSMenuItem alloc] initWithTitle:@"About Plt" action:@selector(orderFrontStandardAboutPanel:) keyEquivalent:@""];
+        [appMenu addItem:aboutMenuItem];
+        [appMenu addItem:[NSMenuItem separatorItem]];
+        NSMenuItem *quitMenuItem = [[NSMenuItem alloc] initWithTitle:@"Quit Plt" action:@selector(terminate:) keyEquivalent:@"q"];
+        [appMenu addItem:quitMenuItem];
+        
+        // 2. File Menu
         NSMenuItem *fileMenuItem = [[NSMenuItem alloc] init];
         [menubar addItem:fileMenuItem];
-        
         NSMenu *fileMenu = [[NSMenu alloc] initWithTitle:@"File"];
+        [fileMenuItem setSubmenu:fileMenu];
         
-        // Open
-        NSMenuItem *openMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open..."
-                                                              action:@selector(openDocument:)
-                                                       keyEquivalent:@"o"];
+        NSMenuItem *openMenuItem = [[NSMenuItem alloc] initWithTitle:@"Open..." action:@selector(chooseFile:) keyEquivalent:@"o"];
         [openMenuItem setTarget:delegate];
         [fileMenu addItem:openMenuItem];
         [fileMenu addItem:[NSMenuItem separatorItem]];
-        
-        // Print
-        NSMenuItem *printMenuItem = [[NSMenuItem alloc] initWithTitle:@"Print..."
-                                                               action:@selector(print:)
-                                                        keyEquivalent:@"p"];
+        NSMenuItem *printMenuItem = [[NSMenuItem alloc] initWithTitle:@"Print..." action:@selector(print:) keyEquivalent:@"p"];
         [fileMenu addItem:printMenuItem];
-        [fileMenuItem setSubmenu:fileMenu];
         
-        // --- 3. Edit Menu ---
+        // 3. Edit Menu
         NSMenuItem *editMenuItem = [[NSMenuItem alloc] init];
         [menubar addItem:editMenuItem];
-        
         NSMenu *editMenu = [[NSMenu alloc] initWithTitle:@"Edit"];
-        
-        NSMenuItem *undoItem = [[NSMenuItem alloc] initWithTitle:@"Undo" action:@selector(undo:) keyEquivalent:@"z"];
-        [editMenu addItem:undoItem];
-        NSMenuItem *redoItem = [[NSMenuItem alloc] initWithTitle:@"Redo" action:@selector(redo:) keyEquivalent:@"Z"];
-        [editMenu addItem:redoItem];
-        [editMenu addItem:[NSMenuItem separatorItem]];
-        NSMenuItem *cutItem = [[NSMenuItem alloc] initWithTitle:@"Cut" action:@selector(cut:) keyEquivalent:@"x"];
-        [editMenu addItem:cutItem];
-        NSMenuItem *copyItem = [[NSMenuItem alloc] initWithTitle:@"Copy" action:@selector(copy:) keyEquivalent:@"c"];
-        [editMenu addItem:copyItem];
-        NSMenuItem *pasteItem = [[NSMenuItem alloc] initWithTitle:@"Paste" action:@selector(paste:) keyEquivalent:@"v"];
-        [editMenu addItem:pasteItem];
-        NSMenuItem *selectAllItem = [[NSMenuItem alloc] initWithTitle:@"Select All" action:@selector(selectAll:) keyEquivalent:@"a"];
-        [editMenu addItem:selectAllItem];
-        
         [editMenuItem setSubmenu:editMenu];
+        
+        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Undo" action:@selector(undo:) keyEquivalent:@"z"]];
+        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Redo" action:@selector(redo:) keyEquivalent:@"Z"]];
+        [editMenu addItem:[NSMenuItem separatorItem]];
+        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Cut" action:@selector(cut:) keyEquivalent:@"x"]];
+        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Copy" action:@selector(copy:) keyEquivalent:@"c"]];
+        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Paste" action:@selector(paste:) keyEquivalent:@"v"]];
+        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Delete" action:@selector(delete:) keyEquivalent:@""]];
+        [editMenu addItem:[[NSMenuItem alloc] initWithTitle:@"Select All" action:@selector(selectAll:) keyEquivalent:@"a"]];
+        
+        // 4. Help Menu
+        NSMenuItem *helpMenuItem = [[NSMenuItem alloc] init];
+        [menubar addItem:helpMenuItem];
+        NSMenu *helpMenu = [[NSMenu alloc] initWithTitle:@"Help"];
+        [app setHelpMenu:helpMenu];
+        [helpMenuItem setSubmenu:helpMenu];
+        
+        NSMenuItem *showHelpMenuItem = [[NSMenuItem alloc] initWithTitle:@"Plt Help" action:@selector(showHelp:) keyEquivalent:@"?"];
+        [helpMenu addItem:showHelpMenuItem];
         
         NSLog(@"starting [app run]");
         [app run];
