@@ -59,7 +59,7 @@ void    d5curv(float *, float *);
  * d5bind - override default device function
  */
 void
-d5bind()
+d5bind(void)
 {
     d_open = d5open;
     d_close = d5close;
@@ -74,7 +74,7 @@ d5bind()
  * d5open - initialize plotting device
  */
 int
-d5open()
+d5open(void)
 {
     dev_.adupi = (float) adupi;	/* addressable units per inch */
     dev_.txpr = TXPRSTK;	/* text precision = stroke */
@@ -95,7 +95,7 @@ d5open()
  * d5close - close plotting device
  */
 void
-d5close()
+d5close(void)
 {
     end_page();
     trailer();
@@ -109,9 +109,7 @@ d5close()
  *	do_gs	move/draw flag: 0 = move, 1 = draw
  */
 void
-d5trns(xx, yy, do_gs)
-double  xx, yy;
-int     do_gs;
+d5trns(double xx, double yy, int do_gs)
 {
     double  x, y;
 
@@ -184,7 +182,7 @@ d5curv(float *xx, float *yy)
  * d5page - signal new page (media change)
  */
 void
-d5page()
+d5page(void)
 {
     end_page();
 }
@@ -193,8 +191,7 @@ d5page()
  * d5pnwd -
  */
 void
-d5pnwd(pw)
-double  pw;			/* pen width in inches */
+d5pnwd(double pw)
 {
     stroke_path();
     if (pw < 0)
@@ -208,9 +205,7 @@ double  pw;			/* pen width in inches */
  *	  (do this in NC to avoid duplicating arrays)
  */
 void
-d5fill(n, px, py, fg, nc)
-int     n, fg, nc;
-float  *px, *py;
+d5fill(int n, float *px, float *py, int fg, int nc)
 {
     int     i, c;
     float   xt, yt;
@@ -242,7 +237,7 @@ float  *px, *py;
 }
 
 static void
-beg_page()
+beg_page(void)
 {
     char    str[80];
 
@@ -258,7 +253,7 @@ beg_page()
 }
 
 static void
-end_page()
+end_page(void)
 {
     stroke_path();		/* flush any remaining path */
     putps(" P");
@@ -266,8 +261,7 @@ end_page()
 }
 
 static void
-putcm(c, s)
-char   *c, *s;
+putcm(char *c, char *s)
 {
     if (s && *s) {
 	putps(c);
@@ -277,7 +271,7 @@ char   *c, *s;
 }
 
 static void
-prologue()
+prologue(void)
 {
     putps("%!PS-Adobe-2.0 EPSF-2.0\n");
     putcm("%%Title: ", copa_.title);
@@ -306,7 +300,7 @@ prologue()
 }
 
 static void
-trailer()
+trailer(void)
 {
     char    str[80];
     double  xp;
@@ -352,7 +346,7 @@ position(double x, double y, double p)
 }
 
 static void
-stroke_path()
+stroke_path(void)
 {
     if (npd != 0)
 	putps(" S");
@@ -361,7 +355,7 @@ stroke_path()
 }
 
 static void
-background()
+background(void)
 {
     char    str[80];
     double  x1, y1, x2, y2;
@@ -415,7 +409,7 @@ background()
 }
 
 static void
-setclip()
+setclip(void)
 {
     char    str[80];
     double  tx, ty;
@@ -472,8 +466,7 @@ setrgb(int c)
 }
 
 static void
-putps(s)
-char   *s;
+putps(char *s)
 {
     static int nput = 0;
     int     nc;
@@ -491,9 +484,7 @@ char   *s;
 }
 
 static void
-sclrot(ix, iy, tx, ty)
-double ix, iy;
-double *tx, *ty;
+sclrot(double ix, double iy, double *tx, double *ty)
 {
     if (o_page) {
         *tx = mg + ix * psu;

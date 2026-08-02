@@ -191,8 +191,7 @@ isdata(char *s)
 }
 
 static int
-is_seq(s)
-char   *s;
+is_seq(char *s)
 {
     int ic, n1, n2, nd;
 
@@ -534,7 +533,7 @@ mac_getdef(int mn, char *s)
 }
 
 void
-mac_preinst()
+mac_preinst(void)
 {
     char *av[3];
     int ac, i;

@@ -257,7 +257,7 @@ usage(void)
 }
 
 void
-free_dat()
+free_dat(void)
 {
     free_zero(xdat);
     free_zero(ydat);

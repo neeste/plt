@@ -56,7 +56,7 @@ void    d2fill(int, float *, float *, int, int);
  * d2bind - override default device function
  */
 void
-d2bind()
+d2bind(void)
 {
     d_open = d2open;
     d_close = d2close;
@@ -70,7 +70,7 @@ d2bind()
  * d2open - initialize plotting device
  */
 int
-d2open()
+d2open(void)
 {
     common_.xd = (unsigned short *) calloc(NPTS * 2, sizeof(unsigned short));
     if (common_.xd == NULL)
@@ -103,7 +103,7 @@ d2open()
  * d2close - close plotting device
  */
 void
-d2close()
+d2close(void)
 {
     d2trns(0., 0., 0);
     put_ch(ENDPAGE);
@@ -118,9 +118,7 @@ d2close()
  *		1 = draw
  */
 void
-d2trns(xx, yy, do_gs)
-double  xx, yy;
-int     do_gs;
+d2trns(double xx, double yy, int do_gs)
 {
     int     i;
 
@@ -152,7 +150,7 @@ int     do_gs;
  * d2page - signal new page (media change)
  */
 void
-d2page()
+d2page(void)
 {
     d2trns(0., 0., 0);
     put_ch(ENDPAGE);
@@ -162,8 +160,7 @@ d2page()
  * d2pnwd - places impress instruction for pen
  */
 void
-d2pnwd(pw)
-double  pw;			/* pen width in inches */
+d2pnwd(double pw)
 {
     int     d;
 
@@ -184,9 +181,7 @@ double  pw;			/* pen width in inches */
  *	  (do this in NC to avoid duplicating arrays)
  */
 void
-d2fill(n, px, py, fg, nc)
-int     n, fg, nc;
-float  *px, *py;
+d2fill(int n, float *px, float *py, int fg, int nc)
 {
     int     i, op;
     unsigned short ix, iy;

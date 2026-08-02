@@ -50,7 +50,7 @@ static int pgn = 0;
  * d8bind - overide default device function
  */
 void
-d8bind()
+d8bind(void)
 {
     d_open = d8open;
     d_close = d8close;
@@ -65,7 +65,7 @@ d8bind()
  * d8open - initialize plotting device
  */
 int
-d8open()
+d8open(void)
 {
     putstr("<?xml version=\"1.0\" standalone=\"no\"?>");
     putstr("<!DOCTYPE svg PUBLIC \"-//W3C//DTD SVG 1.1//EN\""); 
@@ -106,7 +106,7 @@ d8open()
  * d8close - close plotting device
  */
 void
-d8close()
+d8close(void)
 {
     end_page();
     putstr("</g><!-- EOF -->");
@@ -171,7 +171,7 @@ d8curv(float *xx, float *yy)
  * d8page - signal new page (media change)
  */
 void
-d8page()
+d8page(void)
 {
     end_page();
 }
@@ -312,7 +312,7 @@ rectangle(double x1, double y1, double x2, double y2, int c)
 }
 
 static void
-scr_clear()
+scr_clear(void)
 {
     int     c;
 
@@ -323,7 +323,7 @@ scr_clear()
 }
 
 static void
-fountain()
+fountain(void)
 {
     int     c;
 
@@ -344,7 +344,7 @@ fountain()
 /****************************************************************************/
 
 static void
-begin_page()
+begin_page(void)
 {
     if (cleared)
         return;
@@ -360,7 +360,7 @@ begin_page()
 }
 
 static void
-end_page()
+end_page(void)
 {
     if (npt)
         stroke(0);

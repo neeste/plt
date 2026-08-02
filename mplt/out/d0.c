@@ -52,7 +52,7 @@ d0open(void)
  * d0close - close plotting device
  */
 void
-d0close()
+d0close(void)
 {
 }
 
@@ -64,9 +64,7 @@ d0close()
  *		1 = draw
  */
 void
-d0trns(xx, yy, do_gs)
-double  xx, yy;
-int     do_gs;
+d0trns(double xx, double yy, int do_gs)
 {
     char    buf[8], *bp;
     int     x, y;
@@ -89,7 +87,7 @@ int     do_gs;
  * d0page - signal new page (media change)
  */
 void
-d0page()
+d0page(void)
 {
     puttek("\033AK");
 }
@@ -98,8 +96,7 @@ d0page()
  * d0pnwd - places tek 4662 instruction for pen
  */
 void
-d0pnwd(pw)
-double  pw;			/* pen width in inches */
+d0pnwd(double pw)
 {
     char    strbuf[20];
     int     mpen;

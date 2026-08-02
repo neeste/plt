@@ -16,7 +16,7 @@ void    setdch(void);
  * inqplt - inquire plot line type
  */
 int
-inqplt()
+inqplt(void)
 {
     return (copa_.curplt);
 }
@@ -25,7 +25,7 @@ inqplt()
  * qtxlw - inquire text line width
  */
 double
-qtxlw()
+qtxlw(void)
 {
     return (copa_.curtxlw);
 }
@@ -43,8 +43,7 @@ inqchh(void)
  * qtxal - inquire text alignment
  */
 void
-qtxal(alignh, alignv)
-int    *alignh, *alignv;
+qtxal(int *alignh, int *alignv)
 {
     *alignh = copa_.curtxalh;
     *alignv = copa_.curtxalv;
@@ -54,8 +53,7 @@ int    *alignh, *alignv;
  * inqchup - inquire character up vector
  */
 void
-inqchup(chux, chuy)
-double *chux, *chuy;
+inqchup(double *chux, double *chuy)
 {
     *chux = copa_.curchux;
     *chuy = copa_.curchuy;
@@ -85,7 +83,7 @@ qtxln(char *pstr)
  * inqbci - inquire black color index
  */
 int
-inqbci()
+inqbci(void)
 {
     return (dev_.bci);
 }
@@ -94,7 +92,7 @@ inqbci()
  * inqwci - inquire white color index
  */
 int
-inqwci()
+inqwci(void)
 {
     return (dev_.wci);
 }

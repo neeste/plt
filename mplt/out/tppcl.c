@@ -90,8 +90,7 @@ tppcl(double x1, double y1, double x2, double y2, int n, float *px, float *py, i
  *	    [Based on the sign of a cross-product]
  */
 static int
-online(x1, y1, x2, y2, x3, y3)
-double  x1, y1, x2, y2, x3, y3;
+online(double x1, double y1, double x2, double y2, double x3, double y3)
 {
     double cz;
 
@@ -108,9 +107,7 @@ double  x1, y1, x2, y2, x3, y3;
  * The intersection point is returned in (abx,aby).
  */
 static int
-intersect(ax1, ay1, ax2, ay2, bx1, by1, bx2, by2, abx, aby)
-double  ax1, ay1, ax2, ay2, bx1, by1, bx2, by2;
-float  *abx, *aby;
+intersect(double ax1, double ay1, double ax2, double ay2, double bx1, double by1, double bx2, double by2, float *abx, float *aby)
 {
     double   dax, day, dbx, dby, dx1, dy1, tb, det;
 

@@ -27,10 +27,7 @@ static float sklnwd = 1.0;
  * skqtxx - inquire text extent
  */
 void
-skqtxx(x, y, pstr, ptxx)
-double  x, y;
-char   *pstr;
-TXX    *ptxx;
+skqtxx(double x, double y, char *pstr, TXX *ptxx)
 {
     float   ca, sa;
     float   x1, y1, x2, y2, xp, yp, xc, yc, xof, yof;

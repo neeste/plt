@@ -16,9 +16,7 @@ void    setdch(void);
  */
 
 void
-text(x, y, pstr)
-double  x, y;
-char   *pstr;
+text(double x, double y, char *pstr)
 {
     double  stdwid, reqwid;
     float   xt, yt;

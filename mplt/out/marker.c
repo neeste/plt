@@ -56,9 +56,7 @@ static FONT *symfnt;
 static TRANSF ndt;
 
 void
-marker(n, px, py)
-int     n;
-float  *px, *py;
+marker(int n, float *px, float *py)
 {
     int     k;
 

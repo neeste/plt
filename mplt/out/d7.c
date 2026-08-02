@@ -77,7 +77,7 @@ static RECT 	    Scr;
  * d7bind - overide default device function
  */
 void
-d7bind()
+d7bind(void)
 {
     d_open = d7open;
     d_close = d7close;
@@ -92,7 +92,7 @@ d7bind()
  * d7open - initialize plotting device
  */
 int
-d7open()
+d7open(void)
 {
     h.RecordType = EMR_HEADER;
     h.Size = sizeof(h) + sizeof(desc);
@@ -158,7 +158,7 @@ d7open()
  * d7close - close plotting device
  */
 void
-d7close()
+d7close(void)
 {
     double sf;
     static int32_t mg = 100; // 1-mm margin
@@ -261,7 +261,7 @@ d7curv(float *xx, float *yy)
  * d7page - signal new page (media change)
  */
 void
-d7page()
+d7page(void)
 {
     end_page();
 }
@@ -270,8 +270,7 @@ d7page()
  * d7pnwd -
  */
 void
-d7pnwd(pw)
-double  pw;			/* pen width in inches */
+d7pnwd(double pw)
 {
     if (npt > 0)
         stroke(0);
@@ -282,9 +281,7 @@ double  pw;			/* pen width in inches */
 }
 
 void
-d7fill(n, px, py, fg, nc)
-int     n, fg, nc;
-float  *px, *py;
+d7fill(int n, float *px, float *py, int fg, int nc)
 {
     int     i, ci, c, *xp, *yp;
     float   xt, yt;
@@ -568,14 +565,14 @@ rectangle(RECT *R, int c)
 }
 
 static void
-scr_clear()
+scr_clear(void)
 {
     if (dev_.bgci >= 0)
 	rectangle(&Scr, set_color(dev_.bgci));
 }
 
 static void
-fountain()
+fountain(void)
 {
     int     i, j, k, r, g, b, h;
     RECT   strip;
@@ -606,7 +603,7 @@ fountain()
 /****************************************************************************/
 
 static void
-begin_page()
+begin_page(void)
 {
     if (cleared)
         return;
@@ -621,7 +618,7 @@ begin_page()
 }
 
 static void
-end_page()
+end_page(void)
 {
     if (npt)
         stroke(0);

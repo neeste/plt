@@ -35,7 +35,7 @@ build: version
 	rm -rf build
 	mkdir -p build/Release/Plt.app/Contents/MacOS
 	mkdir -p build/Release/Plt.app/Contents/Resources
-	clang -O2 -framework Cocoa -w -o build/Release/Plt.app/Contents/MacOS/Plt macplt.m d4mac.c $$(echo "$(TPLTF)" | tr ' ' '\n' | grep '\.c$$' | sed 's|^|tplt/|') $$(echo "$(OUT_F)" | tr ' ' '\n' | grep '\.c$$' | sed 's|^|out/|') -I. -I./out
+	clang -O2 -framework Cocoa -Wstrict-prototypes -Wdeprecated-non-prototype -o build/Release/Plt.app/Contents/MacOS/Plt macplt.m d4mac.c $$(echo "$(TPLTF)" | tr ' ' '\n' | grep '\.c$$' | sed 's|^|tplt/|') $$(echo "$(OUT_F)" | tr ' ' '\n' | grep '\.c$$' | sed 's|^|out/|') -I. -I./out
 	@echo '<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>CFBundleExecutable</key><string>Plt</string><key>CFBundleIdentifier</key><string>com.steveneely.Plt</string><key>CFBundleName</key><string>Plt</string><key>CFBundlePackageType</key><string>APPL</string><key>CFBundleShortVersionString</key><string>1.0</string><key>CFBundleVersion</key><string>1</string><key>NSPrincipalClass</key><string>NSApplication</string><key>CFBundleHelpBookFolder</key><string>Plt.help</string><key>CFBundleHelpBookName</key><string>Plt Manual</string></dict></plist>' > build/Release/Plt.app/Contents/Info.plist
 	cp -R Plt.help build/Release/Plt.app/Contents/Resources/
 	xattr -cr build/Release/Plt.app

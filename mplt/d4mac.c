@@ -58,7 +58,7 @@ static void setrgb(int), setpen(float), setclip(void);
  * d4bind - override default device function
  */
 void
-d4bind()
+d4bind(void)
 {
     d_open = d4open;
     d_close = d4close;
@@ -73,7 +73,7 @@ d4bind()
  * d4open - initialize plotting device
  */
 int
-d4open()
+d4open(void)
 {
     dev_.adupi = dpi;           /* addressable units per inch */
     dev_.maxpen = 1;		/* maximum pen width (inch) */
@@ -108,9 +108,7 @@ d4close(void)
  *      do_gs   move/draw flag: 0 = move, 1 = draw
  */
 void
-d4trns(xx, yy, do_gs)
-double  xx, yy;
-int     do_gs;
+d4trns(double xx, double yy, int do_gs)
 {
     float ix, iy;
 
@@ -176,7 +174,7 @@ d4curv(float *xx, float *yy)
  * d4page - signal new page (media change)
  */
 void
-d4page()
+d4page(void)
 {
     end_page(0);
 }
@@ -185,8 +183,7 @@ d4page()
  * d4pnwd -
  */
 void
-d4pnwd(pw)
-double  pw;			/* pen width in inches */
+d4pnwd(double pw)
 {
     stroke_path();
     if (pw < 0) {
@@ -200,9 +197,7 @@ double  pw;			/* pen width in inches */
  *	  (do this in NC to avoid duplicating arrays)
  */
 void
-d4fill(n, px, py, fg, nc)
-int     n, fg, nc;
-float  *px, *py;
+d4fill(int n, float *px, float *py, int fg, int nc)
 {
     int     i, c;
     float   xt, yt, ix, iy;
@@ -244,7 +239,7 @@ float  *px, *py;
 /**********************************************************************************/
 
 static void
-stroke_path()
+stroke_path(void)
 {
     if (npnt > 0) {
         CGContextStrokePath(ctx);
@@ -413,7 +408,7 @@ setclip(void)
 /**********************************************************************************/
 
 static void
-beg_page()
+beg_page(void)
 {
     pagecount++;
     if (mac_beg_page) {
@@ -443,7 +438,7 @@ end_page(int close)
 /**********************************************************************************/
 
 int
-chkdev()
+chkdev(void)
 {
     return (DEFAULT_DEVICE);
 }

@@ -26,7 +26,7 @@ void    d1trns(double, double, int);
  * d1bind - override default device function
  */
 void
-d1bind()
+d1bind(void)
 {
     d_open = d1open;
     d_close = d1close;
@@ -38,7 +38,7 @@ d1bind()
  * d1open - initialize plotting device
  */
 int
-d1open()
+d1open(void)
 {
     dev_.adupi = (float) ADUPI;
     dev_.txpr = TXPRSTK;
@@ -58,7 +58,7 @@ d1open()
  * d1close - close plotting device
  */
 void
-d1close()
+d1close(void)
 {
     end_page();
     fflush(stdin);
@@ -78,9 +78,7 @@ d1close()
  *		1 = draw
  */
 void
-d1trns(xx, yy, do_gs)
-double  xx, yy;
-int     do_gs;
+d1trns(double xx, double yy, int do_gs)
 {
     char    buf[8], *bp;
     char    hiy, loy, hix, lox;
@@ -115,7 +113,7 @@ int     do_gs;
  * d1page - signal new page (media change)
  */
 void
-d1page()
+d1page(void)
 {
     end_page();
 }
@@ -149,8 +147,7 @@ end_page(void)
 /* box - draw box
 */
 static void
-box(x1, y1, x2, y2)
-double  x1, y1, x2, y2;
+box(double x1, double y1, double x2, double y2)
 {
     d1trns(x1, y2, 0);
     d1trns(x1, y1, 1);

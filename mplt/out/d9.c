@@ -22,7 +22,7 @@ void    d9fill(int, float *, float *, int, int);
  * d9bind - overide default device function
  */
 void
-d9bind()
+d9bind(void)
 {
     d_open = d9open;
     d_close = d9close;
@@ -36,7 +36,7 @@ d9bind()
  * d9open - initialize plotting device
  */
 int
-d9open()
+d9open(void)
 {
     dev_.adupi = adupi;		/* addressable units per inch */
     dev_.txpr = TXPRSTK;	/* text precision = stroke */
@@ -52,7 +52,7 @@ d9open()
  * d9close - close plotting device
  */
 void
-d9close()
+d9close(void)
 {
     printf("close\n");
 }
@@ -65,9 +65,7 @@ d9close()
  *	do_gs	move/draw flag: 0 = move, 1 = draw
  */
 void
-d9trns(xx, yy, do_gs)
-double  xx, yy;
-int     do_gs;
+d9trns(double xx, double yy, int do_gs)
 {
     printf("%s to (%6.2f, %6.2f)\n", (do_gs) ? "draw" : "move", xx, yy);
 }
@@ -76,7 +74,7 @@ int     do_gs;
  * d9page - signal new page (media change)
  */
 void
-d9page()
+d9page(void)
 {
     printf("page\n");
 }
@@ -85,8 +83,7 @@ d9page()
  * d9pnwd -
  */
 void
-d9pnwd(pw)
-double  pw;			/* pen width in inches */
+d9pnwd(double pw)
 {
     static double cpw = 0.0;
 
@@ -97,9 +94,7 @@ double  pw;			/* pen width in inches */
 }
 
 void
-d9fill(n, px, py, fg, nc)
-int     n, fg, nc;
-float  *px, *py;
+d9fill(int n, float *px, float *py, int fg, int nc)
 {
     int     i;
 

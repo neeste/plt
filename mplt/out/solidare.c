@@ -28,9 +28,7 @@ solidarea(int n, float *px, float *py)
  */
 
 void
-skfill(n, px, py, fg, nc)
-int     n, fg, nc;
-float  *px, *py;
+skfill(int n, float *px, float *py, int fg, int nc)
 {
     float   bx1, by1, bx2, by2;
     float   tx1, ty1, tx2, ty2;

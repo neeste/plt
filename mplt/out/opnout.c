@@ -69,7 +69,7 @@ opnout(int device)
  * clsout - close output
  */
 void
-clsout()
+clsout(void)
 {
     if (dev_.isopen == 0)
 	return;
@@ -106,7 +106,7 @@ clsout()
  * page - go to a new page
  */
 void
-page()
+page(void)
 {
     DEV_PAGE();
     dev_.posknwn = 0;
@@ -115,9 +115,7 @@ page()
 #include "font.h"
 
 int
-ldfont(fn, ft)
-char   *fn;
-int     ft;
+ldfont(char *fn, int ft)
 {
     int     fnttyp, mxg, mxn;
     int     ifd, swpbyt = 0;
@@ -207,7 +205,7 @@ int     ft;
 /* defdev - return device number for default device */
 
 int
-defdev()
+defdev(void)
 {
     return (chkdev());
 }

@@ -31,7 +31,7 @@ void    d3trns(double, double, int);
  * d3bind - override default device function
  */
 void
-d3bind()
+d3bind(void)
 {
     d_open = d3open;
     d_close = d3close;
@@ -43,7 +43,7 @@ d3bind()
  * d3open - initialize plotting device
  */
 int
-d3open()
+d3open(void)
 {
     dev_.adupi = ADUPI;
     dev_.txpr = TXPRSTK;
@@ -58,7 +58,7 @@ d3open()
  * d3close - close plotting device
  */
 void
-d3close()
+d3close(void)
 {
     end_page();
     if (dev_.prompt != 0) {
@@ -74,9 +74,7 @@ d3close()
  *		1 = draw
  */
 void
-d3trns(xx, yy, do_gs)
-double  xx, yy;
-int     do_gs;
+d3trns(double xx, double yy, int do_gs)
 {
     char    s[20];
     int     ix, iy;
@@ -109,7 +107,7 @@ int     do_gs;
  * d3page - signal new page (media change)
  */
 void
-d3page()
+d3page(void)
 {
     end_page();
     begin_page();

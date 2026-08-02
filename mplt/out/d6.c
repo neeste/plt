@@ -50,7 +50,7 @@ void    d6fill(int, float *, float *, int, int);
  * d6bind - override default device function
  */
 void
-d6bind()
+d6bind(void)
 {
     d_open = d6open;
     d_close = d6close;
@@ -64,7 +64,7 @@ d6bind()
  * d6open - initialize plotting device
  */
 int
-d6open()
+d6open(void)
 {
     xdp = (int *) calloc(NPTS * 2, sizeof(int));
     if (xdp == NULL)
@@ -91,7 +91,7 @@ d6open()
  * d6close - close plotting device
  */
 void
-d6close()
+d6close(void)
 {
     end_page();
     encode(0, 2, 0);		/* end metafile */
@@ -127,7 +127,7 @@ d6trns(double xx, double yy, int do_gs)
  * d6page - signal new page (media change)
  */
 void
-d6page()
+d6page(void)
 {
     end_page();
 }
@@ -225,7 +225,7 @@ colorout(int i)
 }
 
 static void
-cgm_header()
+cgm_header(void)
 {
     int     i, n;
     static char *comment;
@@ -266,7 +266,7 @@ cgm_header()
 }
 
 static void
-begin_page()
+begin_page(void)
 {
     int     i;
     double  r2, g2, b2;
@@ -341,7 +341,7 @@ begin_page()
 }
 
 static void
-end_page()
+end_page(void)
 {
     if (ndp > 1)
 	stroke(0);
@@ -354,7 +354,7 @@ end_page()
 }
 
 static void
-background()
+background(void)
 {
     double   r2, g2, b2;
 
@@ -380,7 +380,7 @@ background()
 }
 
 static void
-fountain()
+fountain(void)
 {
     double  rstep, gstep, bstep, dy;
     double  r1, r2, g1, g2, b1, b2, y1, y2;
