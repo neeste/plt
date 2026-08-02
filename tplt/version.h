@@ -1,13 +1,15 @@
 /* version.h */
 
-#define REV	"Version: 5.16, Date: 12-May-20"
-#define COPY	"Copyright 1988-2020"
+#define REV	"Version: 6.00, Date: 2-Aug-2026"
+#define COPY	"Copyright 1988-2026"
 #define BTNRH	"Boys Town National Research Hospital"
 #define RIGHTS	"Non-profit redistribution permitted."
 
 /******************************************************************
         Changes to PLT since version 4.0
 *******************************************************************
+ Revision 6.00 1-Aug-2026
+ * Future proof code with Gemini
  Revision 5.16 17-Apr-20
  * Fixed memory allocation bug in ldfont function
  * Fixed CGM color bug in d6.c

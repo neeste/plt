@@ -24,3 +24,4 @@ ydata=max(ymin,$2)
 data
 5.5,5
 plot
+

@@ -1,4 +1,0 @@
-#!/bin/sh
-killall helpd
-rm -rf ~/Library/Caches/com.apple.help*
-rm -rf ~/Library/Preferences/com.apple.help*

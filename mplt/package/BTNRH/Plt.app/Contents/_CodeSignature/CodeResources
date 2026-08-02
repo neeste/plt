@@ -4,94 +4,48 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Resources/AppController.nib</key>
+		<key>Resources/Plt.help/Contents/Info.plist</key>
 		<data>
-		e7iB7V8w07AVowG1ywDUe2dy82s=
+		KHFzjvrtysFy6Cocfor/O2gh4vc=
 		</data>
-		<key>Resources/AppIcon.icns</key>
+		<key>Resources/Plt.help/Contents/Resources/PltHelp.helpindex</key>
 		<data>
-		80cyvjYR1yc+fFCNsQrL80CcZgw=
+		ZATnaF2yr3HJd3zOoEYBk7w7Igw=
 		</data>
-		<key>Resources/Assets.car</key>
+		<key>Resources/Plt.help/Contents/Resources/PltHelp.html</key>
 		<data>
-		u+M0ztc3Kz4irVqn0dG9eZamFTQ=
+		r6JgJiW7/5tcBIv891QDO/RzxOI=
 		</data>
-		<key>Resources/Base.lproj/MainMenu.nib</key>
-		<data>
-		M7g3N6ZUEBGRceiKClDpBsceF6E=
-		</data>
-		<key>Resources/mplt128.png</key>
-		<data>
-		iszr0ud/VpdDFb6WRqRNjeSYtFs=
-		</data>
-		<key>Resources/mplt256@2x.png</key>
+		<key>Resources/Plt.help/Contents/Resources/mplt128.png</key>
 		<data>
 		iszr0ud/VpdDFb6WRqRNjeSYtFs=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Resources/AppController.nib</key>
+		<key>Resources/Plt.help/Contents/Info.plist</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			e7iB7V8w07AVowG1ywDUe2dy82s=
-			</data>
 			<key>hash2</key>
 			<data>
-			Kqhdbgjw8tlB3SEFVNNM5cYtWsa99RsMCwcnI4cLnro=
+			g1LZH95MCGJnlEppdJ0Ex9WHNX+YhHeQ6lC2oO5vbKE=
 			</data>
 		</dict>
-		<key>Resources/AppIcon.icns</key>
+		<key>Resources/Plt.help/Contents/Resources/PltHelp.helpindex</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			80cyvjYR1yc+fFCNsQrL80CcZgw=
-			</data>
 			<key>hash2</key>
 			<data>
-			/pCvomt3H2xFqYq6QbhbEUAyXai+qwgs07KUJk6ol8s=
+			v90kGcJ5JMWrm2qHwmtUEbZrORqFSuvBZu7OnTVgwqk=
 			</data>
 		</dict>
-		<key>Resources/Assets.car</key>
+		<key>Resources/Plt.help/Contents/Resources/PltHelp.html</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			u+M0ztc3Kz4irVqn0dG9eZamFTQ=
-			</data>
 			<key>hash2</key>
 			<data>
-			3B4ySGRAvu+eILcxrE/txPfYr/+xixyYKT5oaDdmVPA=
+			9d4Ou+ZK9u5hjeCbZnQrjE8rUkuQCTXocgWKqgS4Sfc=
 			</data>
 		</dict>
-		<key>Resources/Base.lproj/MainMenu.nib</key>
+		<key>Resources/Plt.help/Contents/Resources/mplt128.png</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			M7g3N6ZUEBGRceiKClDpBsceF6E=
-			</data>
-			<key>hash2</key>
-			<data>
-			+sw5t25NJOx8iApR473lBQqbkK5rwmWzIhqaMT1PNfs=
-			</data>
-		</dict>
-		<key>Resources/mplt128.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			iszr0ud/VpdDFb6WRqRNjeSYtFs=
-			</data>
-			<key>hash2</key>
-			<data>
-			JGnlAz8vpIkHwAaDzjLKooWtdzpxf1v8mSaAFlLsA2I=
-			</data>
-		</dict>
-		<key>Resources/mplt256@2x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			iszr0ud/VpdDFb6WRqRNjeSYtFs=
-			</data>
 			<key>hash2</key>
 			<data>
 			JGnlAz8vpIkHwAaDzjLKooWtdzpxf1v8mSaAFlLsA2I=

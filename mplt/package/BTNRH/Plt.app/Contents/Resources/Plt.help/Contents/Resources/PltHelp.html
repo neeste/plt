@@ -1,0 +1,3798 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta name="AppleTitle" content="Plt Manual">
+  <meta http-equiv="content-type" content="text/html; charset=us-ascii">
+  <title>PLT User's Guide</title>
+  <style>
+<!--
+/* Font Definitions */
+@font-face
+{font-family:Wingdings;
+panose-1:5 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.Normal, li.Normal, div.Normal
+{margin:0in;
+margin-bottom:.0001pt;
+text-autospace:none;
+font-size:10.0pt;
+font-family:"Times New Roman";}
+h1
+{margin:0in;
+margin-bottom:.0001pt;
+page-break-after:avoid;
+text-autospace:none;
+font-size:10.0pt;
+font-family:Arial;
+color:black;
+text-decoration:underline;}
+h2
+{margin:0in;
+margin-bottom:.0001pt;
+page-break-after:avoid;
+text-autospace:none;
+font-size:10.0pt;
+font-family:Arial;
+color:black;
+display:none;
+font-weight:normal;}
+h3
+{margin-top:12.0pt;
+margin-right:0in;
+margin-bottom:3.0pt;
+margin-left:0in;
+page-break-after:avoid;
+text-autospace:none;
+font-size:13.0pt;
+font-family:Arial;}
+p.FootnoteText, li.FootnoteText, div.FootnoteText
+{margin:0in;
+margin-bottom:.0001pt;
+text-autospace:none;
+font-size:10.0pt;
+font-family:"Times New Roman";}
+span.FootnoteReference
+{font-family:"Times New Roman";
+vertical-align:super;}
+span.EndnoteReference
+{font-family:"Times New Roman";
+vertical-align:super;}
+p.EndnoteText, li.EndnoteText, div.EndnoteText
+{margin:0in;
+margin-bottom:.0001pt;
+text-autospace:none;
+font-size:10.0pt;
+font-family:"Times New Roman";}
+p.BodyText, li.BodyText, div.BodyText
+{margin:0in;
+margin-bottom:.0001pt;
+text-autospace:none;
+font-size:10.0pt;
+font-family:Arial;
+color:black;}
+p.BodyText2, li.BodyText2, div.BodyText2
+{margin:0in;
+margin-bottom:.0001pt;
+text-align:justify;
+text-autospace:none;
+font-size:10.0pt;
+font-family:Arial;
+color:black;}
+a:link, span.Hyperlink
+{color:blue;
+text-decoration:underline;}
+a:visited, span.HyperlinkFollowed
+{color:purple;
+text-decoration:underline;}
+span.Heading1Char
+{font-family:Arial;
+color:black;
+font-weight:bold;
+text-decoration:underline;}
+span.Heading3Char
+{font-family:Arial;
+font-weight:bold;}
+/* Page Definitions */
+@page Section1
+{size:8.5in 11.0in;
+margin:1.0in 94.0pt 1.0in 94.0pt;}
+div.Section1
+{page:Section1;}
+/* List Definitions */
+ol
+{margin-bottom:0in;}
+ul
+{margin-bottom:0in;}
+-->
+
+  </style>
+</head>
+
+<body link="blue" vlink="purple">
+
+<div class="Section1">
+<h3>PLT User&rsquo;s Guide</h3>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">The PLT program
+generates plots that are defined by pltfiles. </span><span
+style="font-family:Arial">Pltfiles are ASCII files with a keyword, a transfer
+of control, a numeric parameter, a string parameter, a message, a macro, or
+data values on each line.&nbsp; </span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line"><a
+href="#_Keywords">Keywords</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial"><a
+href="#_Auxiliary_Files">Auxiliary Files</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial"><a
+href="#_Numeric_Parameters">Numeric parameters</a></span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line"><a
+href="#_String_Parameters">String Parameters</a></span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line"><a
+href="#_Messages">Messages</a></span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line"><a
+href="#_Macros">Macros</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial;layout-grid-mode:line"><a
+href="#_Functions">Functions</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial;layout-grid-mode:line"><a
+href="#_Internal_Variables">Internal Variables</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial;layout-grid-mode:line"><a
+href="#_External_Fonts">External Fonts</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial"><a
+href="#_Binary_Data">Binary Data</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial"><a
+href="#_Special_Characters">Special Characters</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial"><a
+href="#_Symbols">Symbols</a>, <a href="#_Line_Types">Line Types</a>, <a
+href="#_Area_Fill_Patterns">Area Fill Patterns</a>, and <a
+href="#_Standard_Colors">Colors</a></span></p>
+
+<p class="Normal"><span style="font-family:Arial"><a
+href="#_Arithmetic_Expressions">Arithmetic Expressions</a></span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line"><a
+href="#_Whats_New?">What&rsquo;s New?</a></span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">The maximum number
+of characters on any input line is 1024. The maximum number of data columns is
+64. </span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3><a name="_Keywords"></a>Keywords</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">Keywords have no
+arguments or values associated with them, but cause an action or change of
+mode. </span><span style="font-family:Arial">Only the first four characters are
+necessary to specify a keyword.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">DATA</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Empties
+        the data list.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">DATLIST</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Prints
+        contents of data buffer. An optional filename may be
+        specified.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">EXIT</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Immediately
+        terminates the program.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">FILTER</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Removes
+        data values that are not within the range specified by XMIN, YMIN,
+        XMAX, and YMAX.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">FINISH</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Terminates
+        and closes plot file.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">KEEP</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Plots
+        data and keeps data for re-plotting.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">LOAD</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Append
+        saved data to current data.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">NEWFRAME</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Begin a
+        new plot frame on the current page.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">NEWPAGE</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Advances
+        to a new page.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">NEWRANGE</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Begin a
+        new range of X and/or Y values in the current frame.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">PALETTE</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Uses
+        data to set RGB color palette.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">PLAY</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Interprets
+        data as musical notes.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">PLOT</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Plots
+        data and frame if necessary. Empties data list.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">PRMLIST</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Prints
+        out the current parameter values.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">RESET</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Sets all
+        parameters to their default values.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">SAVE</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Save and
+        clear data for later access by xsav, ysav, and zsav
+        functions.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">STAT</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Updates
+        internal variables that describe statistics related to the
+        data.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">UWPH</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Unwrap
+        phase by minimizing slope (assumes cycle=1).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">VARLIST</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Prints
+        out the current user variable values. An optional filename may be
+        specified.</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3><a name="_Auxiliary_Files"></a>Auxiliary Files</h3>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="BodyText">These commands have a file name as an
+argument.&nbsp;&nbsp; If&nbsp; "." does not appear in the filename then a
+default extension is added.</p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">BDATA</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Includes
+        specified file as a binary data file.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="BodyText">CALL</p>
+      </td>
+      <td width="486" valign="top"><p class="BodyText">Transfers control to
+        another file.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">INCLUDE</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Includes
+        specified file as a ".plt" file.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">STDFNT</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Load
+        external font file as the standard font.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">ALTFNT</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Load
+        external font file as the alternate font.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="94" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">SYMFNT</span></p>
+      </td>
+      <td width="486" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Load
+        external font file as the symbol font.</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3><a name="_Numeric_Parameters"></a>Numeric Parameters</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">Numeric parameters
+are followed by "=" and either a number or a word.&nbsp; </span><span
+style="font-family:Arial">Only the first four characters are necessary to
+specify a parameter name. <span
+style="color:black; layout-grid-mode:line">Default values are given below after
+each parameter name.&nbsp; The numbers in brackets refer to Notes at the
+end.</span></span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ANNCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Annotation color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ANNLWT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Annotation line weight. [1]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ANNSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Annotation size. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ARONUM</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Arrowhead drawn at last position (1),
+        first position (-1), or both (2). [9]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">AROSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Arrowhead size. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">AROTIP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0.1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Thickness of arrowhead tip (typically
+        between 0 and 1). [9]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">AROWID</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0.5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Width of arrowhead (typically between 0
+        and 1).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">AXCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Axes color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">AXLWT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Axes line weight. [1]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">BGCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Background color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">CDEXT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Extend cumulative distribution to XMIN
+        and XMAX. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">CLIP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Clip lines at frame boundary.
+        [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">CORNER</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Draw axis frame corners when XPERCENT or
+        YPERCENT are less than 100. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">COUNT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Use YDATA for cumulative distribution
+        counts. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">EBNUM</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">2</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Number of error bars: 0 = none, 1 = upper
+        bar only, 2 = both upper and lower, -1 = lower bar only.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">EBWID</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Width of error bars scale factor.
+        [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ECHO</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Echo each input line read. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">FGCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Foreground color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">FILCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Fill color for symbols 10-19.
+        [8]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">FNCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Fountain color. Specifies a different
+        background color at the top of the page which gradually changes to
+        BGCOL toward the bottom of the page. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">GAPSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls size of gap between line
+        segments for plotting symbols. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">GRDCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Grid color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">GRDLWT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Grid line weight. [1]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">GRDSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Grid line pattern size. [7]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">GRDTYPE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Grid line type: 0 = solid lines, 1 =
+        dotted lines, &gt;1 = dashed lines.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">GRID</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Plot grid lines at major intervals.
+        [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">HEADER</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Date, time, filename and page number
+        printed at bottom of plot. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">LABCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Label color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">LABLWT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Label line weight. [1]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">LABSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Label size. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">LINSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Plot line pattern size. [7]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">LINTYPE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Plot line type: 0 = solid lines, 1 =
+        dotted lines, &gt;1 = dashed lines.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MAGNIFY</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Magnify entire plot by this scale
+        factor.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MHALIGN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Interpret MXLLC as a position for
+        alternate message string horizontal alignment: 0=Normal, 1=Left,
+        2=Center, 3=Right.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MHKEY</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">3</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls horizontal size of shade boxes
+        and lines in messages and axis labels. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MHSP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls horizontal spacing between
+        characters in messages relative to their height.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MHXP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls horizontal expansion of
+        characters in messages.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MSGANGLE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Message angle (degrees counterclockwise
+        from x-axis).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MSGCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Message color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MSGDAT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Interpret MXLLC and MYLLC in coordinate
+        system of the data instead of inches relative to XLLC and YLLC.
+        [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MSGLWT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Message line weight. [1]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MSGSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Message size. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MSLANT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Italic slant of characters in messages in
+        degrees clockwise from upright.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MVALIGN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Interpret MYLLC as a position for
+        alternate message string vertical alignment: 0=Normal, 1=Top, 2=Cap,
+        3=Half, 4=Base, 5=Bottom.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MVKEY</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls vertical size of shade boxes and
+        symbols in messages. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MVSP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1.64</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls vertical spacing between lines
+        in messages and axis labels.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MXDAT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Interpret MXLLC in coordinate system of
+        the data instead of inches relative to XLLC. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MXLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Message location in the x direction
+        (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MYDAT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Interpret MYLLC in coordinate system of
+        the data instead of inches relative to YLLC. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">MYLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Message location in the y direction
+        (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">NDATA</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Number of times that each data line is
+        read.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">NORM</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Normalize cumulative and frequency plots
+        to 1. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">OPENAX</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Leave the top and right side of axes
+        open. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">PLTCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Plot color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">PLTLWT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Plot line weight. [1]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">PLTYPE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">3</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Plot type: 1 = Symbols only, 2 = Lines
+        only, 3 = Both symbols and lines, 4 = Histogram, 5 = Rectangles, 6 =
+        Polygon, 7 = Wave, 8 = contiGuous rectangles, 9 = Cumulative, and 10 =
+        Frequency. (Single letter is sufficient.)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RANSKP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right annotation skip. [5]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RAXIS</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right axis: 1=on, 0=off.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RBREAK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis break location
+        (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RCYCLE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Number of logarithmic cycles in the right
+        axis.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RINT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis intervals for tick marks.
+        [4]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RMAX</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis maximum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RMIN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis minimum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ROTATE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Rotate plot: 0 = no rotation, 1 = 90
+        degrees, 2 = 180 degrees, and 3 = 270 degrees.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RPERCENT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">100</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Percent of right axis used to position
+        the limits.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RSHIFT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis shift of tick marks and
+        annotations (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RTICK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls length of the tick marks on the
+        right axis. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SHADE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Shade in the histogram bars: 0=Hollow,
+        1=Solid, (2-39)=Hatch. SHADE value 40 fills the area with a gray value
+        between black and white (see SHDGRAY). SHADE values 41-79 are the same
+        as 1-39 except that the interior is filled with gray before the hatch
+        pattern and outline are drawn.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SHDCOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">-1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Shade color. [6]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SHDGRAY</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Gray area fill for SHADE values 41-79.
+        The gray values range from 0 (black) to 1 (white).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SHDLWT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Shade hatch line weight. [1]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SIZFAC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Size factor. Controls size of everything.
+        For negative values PLT does not change the sizes from frame to frame.
+        Positive values instruct PLT to compute sizes as if average axis length
+        was equal to SIZFAC.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SMOOTH</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Smooth the data. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SOLID</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Solid symbols are produced if possible.
+        [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SORT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Sort data in order of increasing x
+        values. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SPLINE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Draw a B-spline instead of connecting
+        points for PLTYPE=2 or 3.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">STEM</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Draw a stem plot instead of connecting
+        points for PLTYPE=2 or 3. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SYMANG</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Rotation angle of symbol (degrees
+        counter-clockwise) relative to normal orientation.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SYMBOL</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Symbol represents the number of symbol to
+        plot (0-31).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SYMSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Symbol size. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TANSKP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top annotation skip. [5]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TAXIS</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top axis: 1=on, 0=off.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TBREAK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis break location
+        (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TCYCLE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Number of logarithmic cycles in the top
+        axis.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TICDIR</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Tick direction: value of "inward&rdquo;
+        produces tick marks pointing inward. Otherwise, they are
+        outward.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TICSIZ</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls length of the tick marks on all
+        axes. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TINT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis intervals for tick marks.
+        [4]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TMAX</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis maximum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TMIN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis minimum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TPERCENT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">100</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Percent of top axis used to position the
+        limits.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TSHIFT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis shift of tick marks and
+        annotations (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TTICK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls length of the tick marks on the
+        top axis. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">VXLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X dimension virtual page offset
+        (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">VYLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y dimension virtual page offset
+        (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">WXLEN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">10.5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X dimension virtual page length
+        (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">WXLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">10.5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X dimension virtual page offset from
+        lower-left corner (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">WYLEN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">8</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y dimension virtual page length
+        (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">WYLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">8</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y dimension virtual page offset from
+        lower-left corner (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XANSKP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis annotation skip. [5]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XAXIS</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X axis: 1=on, 0=off.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XBREAK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis break location
+        (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XCYCLE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Number of logarithmic cycles in the
+        x-axis.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XGAIN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Scale factor applied to X data before
+        plotting.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XINT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis intervals. [4]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XLEN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">6</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis length (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">2.2</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Location of lower-left corner of axes in
+        x direction (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XMAX</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">10</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis maximum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XMIN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis minimum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XOFST</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Offset applied to x data before
+        plotting.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XPERCENT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">100</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Percent of x axis used to position the
+        limits.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XSHIFT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis shift of tick marks and
+        annotations (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XTICK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls length of the tick marks on the
+        bottom axis. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YANSKP</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis annotation skip. [5]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YAXIS</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y axis: 1=on, 0=off.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YBREAK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis break location
+        (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YCYCLE</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Number of logarithmic cycles in the y
+        axis.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YGAIN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Scale factor applied to Y data before
+        plotting.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YHOR</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Place the labels on the y axis
+        horizontally. [3]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YINT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis intervals. [4]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YLEN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">6</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis length (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YLLC</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1.5</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Location of lower-left corner of axes in
+        y direction (inches).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YMAX</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">10</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y axis maximum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YMIN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y axis minimum value.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YOFST</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Offset applied to y data before
+        plotting.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YPERCENT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">100</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Percent of y axis used to position the
+        limits.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YSHIFT</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis shift of tick marks and
+        annotations (percent).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YTICK</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Controls length of the tick marks on the
+        left axis. [2]</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ZGAIN</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">1</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Scale factor applied to z data before
+        plotting.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="84" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ZOFST</span></p>
+      </td>
+      <td width="48" valign="top"><p class="Normal" align="center"><span
+        style="layout-grid-mode:line">0</span></p>
+      </td>
+      <td width="448" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Offset applied to z data before
+        plotting.</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span style="layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;______________________________</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="BodyText2">Note 1: Negative values select absolute line weights,
+positive values multiply the default line weight, and zero eliminates the
+lines.</p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">Note 2: Positive
+values are used as multipliers of default size.&nbsp; Negative values are used
+as absolute size in inches.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">Note 3: YES = Y =
+1 and NO = N = 0.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">Note 4: Intervals
+for tic marks are of the form MM.N where MM and N are the number of major and
+minor intervals respectively.&nbsp;&nbsp; Zero value indicates axis line with
+no tick marks.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">Note 5: If set to
+zero no annotations are to be skipped. Positive values indicate the number of
+annotations to be skipped.&nbsp; The first digit after the decimal point
+indicates an offset to the first annotation not skipped. Negative values
+produce no annotations.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="BodyText2">Note 6: The interpretation of color is device
+dependent. A small positive value selects a pen number (1-9) on pen plotter
+devices&nbsp; (HPGL and Tektronix) and selects a predefined color index (0-15)
+on other devices that support color output (PC, PostScript, and CGM).&nbsp; A
+negative value for FGCOL, BGCOL, or FNCOL indicates that device default colors
+should be used.&nbsp;&nbsp; A negative value for all other color parameters
+indicates that the color should be set to the same value as FGCOL.</p>
+
+<p class="Normal"><span
+style="font-family:Arial; color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="BodyText2">Note 7: The line pattern size controls the length of
+the dash plus space for line types greater than&nbsp; (or equal to)
+1.&nbsp;&nbsp; Negative values select absolute pattern size in inches, positive
+values multiply the default pattern size.</p>
+
+<p class="BodyText2">&nbsp;</p>
+
+<p class="BodyText2">Note 8: A negative value for this parameter indicates
+the fill color should be the same value as PLTCOL. A positive value is an index
+into the PLT color palette.</p>
+
+<p class="BodyText2">&nbsp;</p>
+
+<p class="BodyText2">Note 9: Arrowheads are only drawn for PLTYPE=2 (lines).
+If AROTIP is greater than 0, then arrowhead will be filled with color specified
+by SHDCOL.</p>
+
+<p class="BodyText2">&nbsp;</p>
+
+<p class="BodyText2">&nbsp;</p>
+
+<h3><a name="_String_Parameters"></a>String Parameters</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="BodyText">String parameters are followed by an equal sign and a
+string. Only the first four characters are necessary to specify a parameter
+name. The default value of all string parameters is a NULL string.</p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RANNOT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis annotation.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RFMT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis annotation format.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">RLABEL</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Right-axis label.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">SELECT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Logical expression specifying selection
+        of data rows.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TANNOT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis annotation.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TFMT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis annotation format.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">TLABEL</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Top-axis label.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XANNOT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis annotation.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XDATA</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X data definition.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XFMT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis annotation format.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">XLABEL</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">X-axis label.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YANNOT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis annotation.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YDATA</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y data definition.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YFMT</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis annotation format.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">YLABEL</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Y-axis label.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:&#34;Courier New&#34;;layout-grid-mode:   line">ZDATA</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="layout-grid-mode:line">Z data definition.</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<p class="BodyText"><span style="layout-grid-mode:line">The parameters
+XDATA, YDATA, and ZDATA are interpreted as arithmetic expressions that may
+include column numbers, which are specified as $1, $2, &hellip;, $64.
+</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3><a name="_Messages"></a>Messages</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="BodyText2">Messages are quoted strings, which may be several lines
+long.&nbsp; The position of the message may be specified immediately preceding
+the open quote on the first line of the message or by setting the parameters
+MXLLC and MYLLC.</p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3><a name="_Macros"></a>Macros</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="BodyText2">Macros are invoked by a line that begins with
+"%macro_name" followed by up to 99 arguments&nbsp; (delimited by spaces). There
+are five internal macros, %define, %undefine, %repeat, %for, and %msg.&nbsp;
+</p>
+
+<p></p>
+
+<p class="BodyText2" align="left"><strong>%define
+&lt;macro_name&gt;</strong></p>
+
+<p class="BodyText2" align="left" style="margin-left:2em;">New macros may be
+defined using the %define macro.&nbsp; The first argument of %define is the new
+macro name (without the % character) and the second argument may contain the
+body of the new macro.&nbsp; If the %define macro has no second argument, the
+body of the new macro will be obtained from the succeeding lines of the pltfile
+up to a line that begins with &ldquo;%%".&nbsp; Occurrences of $1, $2 ... $99
+within the body of the macro are replaced by arguments when the new macro is
+invoked. </p>
+
+<p class="BodyText2" align="left"><strong>%undefine
+&lt;macro_name&gt;</strong></p>
+
+<p class="BodyText2" align="left" style="margin-left:2em;">The %undefine
+macro removes the macro definition.&nbsp; </p>
+
+<p class="BodyText2" align="left"><strong>%msg &lt;x&gt; &lt;y&gt;
+&lt;format&gt; &hellip;</strong></p>
+
+<p class="BodyText2" align="left" style="margin-left:2em;">Formatted
+messages are produced by the %msg macro.&nbsp; The first two arguments are the
+x and y locations used to located the message on the plot.&nbsp; The third
+argument is a format string, which may contain C-style, floating-point format
+specifications embedded in text. For each floating-point specification in the
+format string, there should be an additional argument with an arithmetic
+expression for the value of the corresponding floating-point number. </p>
+
+<p class="BodyText2" align="left"><strong>%repeat &lt;count&gt;</strong></p>
+
+<p class="BodyText2" align="left" style="margin-left:2em;">The %repeat macro
+is similar to the %define macro except that the first argument is a repeat
+count instead of a new macro name.&nbsp; Any occurrence of $0 in the macro body
+will be replaced by an index of the current iteration.</p>
+
+<p class="BodyText2" align="left"><strong>%for &lt;item&gt;
+&hellip;</strong></p>
+
+<p class="BodyText2" align="left" style="margin-left:2em;">The %for macro is
+similar to the %repeat macro except that the number of repetitions is
+determined by the number of arguments on the first line.&nbsp; Any occurrence
+of $0 in the macro body of %for will be replaced by an index of the current
+iteration. Any occurrence of $1 in the body of %for will be replaced by the
+corresponding argument on the first line. </p>
+
+<p></p>
+
+<p class="BodyText2">In addition to these internal macros, PLT has one
+pre-installed macro. A pre-stalled macro differs from an internal macro in that
+its definition can be replaced by a new definition or removed by %undefine.</p>
+
+<p></p>
+
+<p class="BodyText2" align="left"><strong>%straline &lt;slope&gt;
+&lt;y_intercept&gt; &lt;lintype&gt; &lt;x1&gt; &lt;x2&gt;</strong></p>
+
+<p class="BodyText2" align="left" style="margin-left:2em;">draws a line
+between x1 and x2 with the specified slope, y_intercept, and lintype, also
+assigns to the variables a &amp; b the y-values at x1 &amp; x2.</p>
+
+<p class="BodyText2">&nbsp;</p>
+
+<p class="BodyText2">&nbsp;</p>
+
+<h3><a name="_Functions"></a>Functions</h3>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">Any macro that is
+defined by a single arithmetic statement may also be used as a function within
+another arithmetic statement. Functions are invoked by the function name
+followed by parentheses. Any function arguments are delimited by commas within
+the parentheses.&nbsp; In addition to user-defined functions, there are several
+internally defined functions:</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">abs(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">absolute
+        value of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">atan(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">arctangent
+        of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">atanh(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">inverse
+        hyperbolic tangent of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">ceil(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">least
+        integer greater than x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">cos(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">cosine
+        of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">cms(x,y)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">complex
+        magnitude squared</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">cmr(x,y,u,v)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">complex
+        multiply real part</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">cmi(x,y,u,v)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">complex
+        multiply imaginary part</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">cdr(x,y,u,v)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">complex
+        divide real part</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">cdi(x,y,u,v)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">complex
+        divide imaginary part</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">erf(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">error
+        function of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">exp(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">natural
+        number e to the power of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">floor(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">greatest
+        integer less than x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">ifelse(c,x,y)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        x if c is non-zero, otherwise returns y</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">limit(a,x,b)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        a if x is less than a, returns b if x is greater than b, otherwise
+        returns x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">ln(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">natural
+        logarithm of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">log(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">base 10
+        logarithm of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">max(x,y,...)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">maximum
+        value of x, y, ... </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">min(x,y,...)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">minimum
+        value of x, y, ... </span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">round(n)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">nearest
+        integer</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">select(n,...)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">return
+        the nth argument after the first argument</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sin(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sine of
+        x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sqrt(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">square-root
+        of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">tan(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">tangent
+        of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">tanh(x)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">hyperbolic
+        tangent of x</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">xdat(i)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        the i-th value from the x-data list</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">xsav(i)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        the i-th value from the x-save list</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">ydat(i)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        the i-th value from the y-data list</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">ysav(i)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        the i-th value from the y-save list</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">zdat(i)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        the i-th value from the z-data list</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">zsav(i)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">returns
+        the i-th value from the z-save list</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">zdev(p)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">converts
+        percentile score to z-score</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">ztop(z)</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">converts
+        z-score to percentile score</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3><a name="_Internal_Variables"></a>Internal Variables</h3>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="BodyText">Internal variables values can be used in arithmetic
+expressions.&nbsp; These variables are identified by names that begin with
+``$''.&nbsp; Most of the internal variables represent statistics that are
+computed from the data when the keyword STAT is used:</p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$corr_xy</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">correlation
+        between x-data and y-data values</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$lr_a</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">linear-regression
+        coefficient a in y=a+bx</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$lr_b</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">linear-regression
+        coefficient b in y=a+bx</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$lr_c</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">linear-regression
+        coefficient c in x=c+dy</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$lr_d</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">linear-regression
+        coefficient d in x=c+dy</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$n</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">number
+        of data values</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$sum_x</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sum of
+        x-data values</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$sum_xx</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sum of
+        x-data values squared</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$sum_xy</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sum of
+        x-data values times y-data values</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$sum_y</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sum of
+        y-data values</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$sum_yy</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">sum of
+        y-data values squared</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$x_max</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">maximum
+        value of x-data</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$x_mean</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">mean
+        value of x-data</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$x_min</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">minimum
+        value of x-data</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$x_sd</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">standard
+        deviation of x-data values</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$y_max</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">maximum
+        value of y-data</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$y_mean</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">mean
+        value of y-data</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$y_min</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">minimum
+        value of y-data</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$y_sd</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">standard
+        deviation of y-data values</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">There are three
+additional internal variables:</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$device</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">number
+        of the current output device</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$random</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">random&nbsp;&nbsp;&nbsp;
+        number,&nbsp;&nbsp; uniformly&nbsp;&nbsp; distributed between zero and
+        one.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$x</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">current
+        x-data value, useful&nbsp; for&nbsp; defining y=f($x)</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$y</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">current
+        y-data value</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="96" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$z</span></p>
+      </td>
+      <td width="484" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">current
+        z-data value</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3>External Fonts</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">The&nbsp;
+internal&nbsp; definitions&nbsp; that plt program normally uses for symbols and
+text characters can be replaced by loading external&nbsp; definitions&nbsp;
+from plt font files.&nbsp; Use SYMFNT to redefine symbols, STDFNT to redefine
+the standard&nbsp; character&nbsp; set and ALTFNT to replace the alternate
+character set (usually Greek letters).&nbsp; The plt font files&nbsp; are&nbsp;
+created and modified by a separate program called PLTFNT.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3><a name="_Binary_Data"></a>Binary Data</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">Plt can read
+binary data files using the BDATA command. The binary data file must have a
+short header followed by integer data values.&nbsp;&nbsp; All integer values
+are assumed to stored in the file with the least-significant byte first. (This
+is the standard integer storage on the PC.)&nbsp; The header contains four
+two-byte integers:&nbsp; (1) a magic number for identification = 12345 decimal,
+(2) the number of bytes per integer value in the data&nbsp; (must be 2), (3)
+the number of coordinate values (x, y, z) to be specified for each data point
+(must be 1, 2, or 3), and (4) the number of data points in the file.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><a name="_Special_Characters"></a><span
+style="font-family: Arial;color:black;layout-grid-mode:line">&nbsp;</span></p>
+
+<h3>Special Characters</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">Some characters
+have special meaning in messages or labels.</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">[str]</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Subscript
+        str.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;layout-grid-mode:line">{str}</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;layout-grid-mode:line">Superscript
+        str.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">^str^</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Shift to
+        alternate font for str.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="BodyText2" align="left">|str|</p>
+      </td>
+      <td width="542" valign="top"><p class="BodyText2" align="left">If str
+        is null or "*", then the current symbol&nbsp; is inserted.&nbsp;&nbsp;
+        If str is a number (0-31), then the symbol with the corresponding
+        number is inserted. If the number is preceded by an '_' then a line
+        with corresponding line type is inserted.&nbsp; If the number is
+        preceded by a '#' then a box with corresponding shade type is
+        inserted.&nbsp;&nbsp; Otherwise, str and the surrounding "|" are taken
+        literally.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">$</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Replace
+        "$" in string with space.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">;</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Begin
+        comment.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">!</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Begin
+        comment and write comment to error output.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">\c</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Insert&nbsp;
+        character&nbsp; c without special meaning indicated above, where c is [
+        ] { } ^&nbsp; $ | ; ! " or \.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">\-</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Hyphen
+        (short dash).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">\
+        </span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Half
+        space (backslash &ndash; space).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">\h</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Half
+        back space.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">\b</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Full
+        back space.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">\.</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Set
+        &ldquo;dot&rdquo; position.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="41" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">\r</span></p>
+      </td>
+      <td width="542" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Return
+        to &ldquo;dot&rdquo; position.</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<h3>Symbols</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<table class="NormalTable" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2"
+        align="center"><em>Symbol</em></p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2"
+        align="center"><em>Shape</em></p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2"
+        align="center"><em>Symbol</em></p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2"
+        align="center"><em>Shape</em></p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2"
+        align="center"><em>Symbol</em></p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2"
+        align="center"><em>Shape</em></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">0</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Open square</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">10</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled square</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">20</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Ray-box</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">1</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Open circle</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">11</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled circle</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">21</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Circle-dot</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">2</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Open triangle</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">12</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled triangle</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">22</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Happy Face</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">3</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Open Inverted
+        triangle</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">13</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled Inv.
+        triangle</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">23</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Sad Face</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">4</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Open diamond</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">14</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled diamond</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">24</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">6-pt Asterisk</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">5</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Hourglass</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">15</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled hourglass</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">25</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Dot </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">6</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">8-pt Asterisk</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">16</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled pentagon</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">26</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Open pentagon</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">7</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Plus sign</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">17</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled hexagon</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">27</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Open hexagon</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">8</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">'Picnic table'</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">18</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled 5-pt Star</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">28</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Open 5-pt Star</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">9</p>
+      </td>
+      <td width="155" valign="top"><p class="BodyText2">Up-pointing arrow</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">19</p>
+      </td>
+      <td width="137" valign="top"><p class="BodyText2">Filled 6-pt Star</p>
+      </td>
+      <td width="68" valign="top"><p class="BodyText2" align="center">29</p>
+      </td>
+      <td width="111" valign="top"><p class="BodyText2">Open 6-pt Star</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<h3><a name="_Line_Types"></a>Line Types</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<table class="NormalTable" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2"
+        align="center"><em>Lintype</em></p>
+      </td>
+      <td width="413" valign="top"><p class="BodyText2"
+        align="center"><em>Description</em></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">0</p>
+      </td>
+      <td width="413" valign="top"><p class="BodyText2">Solid line</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">1</p>
+      </td>
+      <td width="413" valign="top"><p class="BodyText2">Dotted line</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="68" valign="top"><p class="BodyText2" align="center">2 to
+        9</p>
+      </td>
+      <td width="413" valign="top"><p class="BodyText2">Dashed lines
+        (dash:space ratio is appx. Lintype minus 1)</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<h3><a name="_Area_Fill_Patterns"></a>Area Fill Patterns</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<table class="NormalTable" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2"
+        align="center"><em>Shade</em></p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2"
+        align="center"><em>Description</em></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">0</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Open (unfilled) with
+        outline</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">1</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Solid (filled) with
+        no outline (see Shdcol)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">2 to
+        4</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Narrow cross-hatch
+        with no outline</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">5 to
+        10</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Narrow single-hatch
+        with no outline</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">11 to
+        13</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Wide cross-hatch
+        with no outline</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">14 to
+        19</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Wide single-hatch
+        with no outline</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">20</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Background-filled
+        with outline (see Bgcol)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">21 to
+        39</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Same as 1 to 19
+        except with outline</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">40</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Gray-filled with no
+        outline (see Shdgray)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">41 to
+        79</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Same as 1 to 39
+        except with gray background (see Shdgray)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">80</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Background-filled
+        with no outline (see Bgcol)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="79" valign="top"><p class="BodyText2" align="center">81 to
+        119</p>
+      </td>
+      <td width="408" valign="top"><p class="BodyText2">Same as 1 to 39
+        except with filled background (see Bgcol)</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<h3><a name="_Standard_Colors"></a>Standard Colors</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<table class="NormalTable" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center"><em>Index</em></p>
+      </td>
+      <td valign="top"><p class="BodyText2"
+        align="center"><em>Description</em></p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center"><em>Index</em></p>
+      </td>
+      <td valign="top"><p class="BodyText2"
+        align="center"><em>Description</em></p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">0</p>
+      </td>
+      <td valign="top"><p class="BodyText2">black</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">8</p>
+      </td>
+      <td valign="top"><p class="BodyText2">dk. gray</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">1</p>
+      </td>
+      <td valign="top"><p class="BodyText2">blue</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">9</p>
+      </td>
+      <td valign="top"><p class="BodyText2">light blue</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">2</p>
+      </td>
+      <td valign="top"><p class="BodyText2">green</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">10</p>
+      </td>
+      <td valign="top"><p class="BodyText2">light green</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">3</p>
+      </td>
+      <td valign="top"><p class="BodyText2">cyan</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">11</p>
+      </td>
+      <td valign="top"><p class="BodyText2">light cyan</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">4</p>
+      </td>
+      <td valign="top"><p class="BodyText2">red</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">12</p>
+      </td>
+      <td valign="top"><p class="BodyText2">light red</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">5</p>
+      </td>
+      <td valign="top"><p class="BodyText2">magenta</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">13</p>
+      </td>
+      <td valign="top"><p class="BodyText2">light magenta</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">6</p>
+      </td>
+      <td valign="top"><p class="BodyText2">brown</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">14</p>
+      </td>
+      <td valign="top"><p class="BodyText2">yellow</p>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><p class="BodyText2" align="center">7</p>
+      </td>
+      <td valign="top"><p class="BodyText2">lt. gray</p>
+      </td>
+      <td valign="top"><p class="BodyText2" align="center">15</p>
+      </td>
+      <td valign="top"><p class="BodyText2">white</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<h3><a name="_Arithmetic_Expressions"></a>Arithmetic Expressions</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="EndnoteText"><span style="font-family:Arial">The following tables
+lists the operators supported by PLT in the order of precedence (from highest
+to lowest).</span></p>
+
+<p class="EndnoteText"><span style="font-family:Arial">&nbsp;</span></p>
+
+<table class="NormalTable" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="109" valign="top"><p class="EndnoteText"
+        align="center"><span style="font-family:Arial">operator</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">operation</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">~</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">logical negate</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">^</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">exponentiation</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">*&nbsp;&nbsp; /</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">multiplication, division</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">+&nbsp;&nbsp; -</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">addition, subtraction</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">&lt;&nbsp;&nbsp; &lt;=&nbsp;&nbsp;
+        &gt;&nbsp;&nbsp;&nbsp;&nbsp; &gt;=</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">less than, greater than</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">==&nbsp;&nbsp; ~=</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">equals, not equals</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">&amp;</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">logical and</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="109" valign="top"><p class="Normal" align="center"><span
+        style="font-family:Arial">|</span></p>
+      </td>
+      <td width="155" valign="top"><p class="Normal"><span
+        style="font-family:Arial">logical or</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">Arithmetic expressions may
+also include the name of any numeric parameter, internal variable, internal
+function, or single-line, user-defined macro. The value of any numeric
+parameter may be specified as an arithmetic expression. When specifying a
+numeric parameter, if the first character is &ldquo;n&rdquo; or
+&ldquo;y&rdquo;, the value is taken to be 0 or 1, respectively. Certain numeric
+parameters (mhalign, mvalign, pltype, and ticdir) give additional special
+meaning to the first character.</span></p>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">Several string parameters
+(xdata, ydata, zdata, and select) may also be specified by arithmetic
+expressions. The evaluation of these expressions is deferred until data is
+read. Data columns are referenced within these expressions as $1, $2, &hellip;,
+$64. Data rows may be conditionally included by a specifying a logical
+expression for the select parameter.</span></p>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<h3>Command-Line Options</h3>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">The command-line
+options are:</span></p>
+
+<p class="Normal"><span
+style="font-family:Arial;color:black;layout-grid-mode: line">&nbsp;</span></p>
+
+<table class="TableGrid" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-e</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Causes
+        the input file to be&nbsp; echoed&nbsp; on&nbsp; the&nbsp; error
+        output.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-cm</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Use&nbsp;
+        centimeters&nbsp; instead&nbsp; of&nbsp; inches&nbsp; as the basic
+        unit.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-mm</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Use
+        millimeters instead&nbsp; of&nbsp; inches&nbsp; as&nbsp; the&nbsp;
+        basic unit.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-m0</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Output&nbsp;
+        to&nbsp; stdout&nbsp; in&nbsp; Tektronix 4663 plotter
+        language.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-m1</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Output
+        to stdout for Tektronix 4010 terminal.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-m2</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Output
+        to stdout in Impress language.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-m3</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Output
+        to stdout in HPGL graphics language.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-m4</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Output
+        directly to a window (default).</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-m5</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Output
+        encapsulated PostScript to stdout.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-m6</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Output
+        CGM (computer graphics metafile) to&nbsp; stdout.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="59" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">-v</span></p>
+      </td>
+      <td width="521" valign="top"><p class="Normal"><span
+        style="font-family:Arial;color:black;layout-grid-mode:   line">Print
+        PLT program version.</span></p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<h3><a name="_Whats_New?"></a>What&rsquo;s New?</h3> 
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">Version 5.16 12-Apr-20</span></p>
+<ul type="disc">
+  <li class="Normal"><span style="font-family:Arial">Cleaned up for MacOS</li>
+  <li class="Normal"><span style="font-family:Arial">Exclude Nan data</span></li>
+</ul>
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">Version 4.84 7-May-07</span></p>
+<ul type="disc">
+  <li class="Normal"><span style="font-family:Arial">Added keywords save and load</span></li>
+  <li class="Normal"><span style="font-family:Arial">Added functions round, xsav, ysav, and zsav</span></li>
+</ul> 
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="Normal"><span style="font-family:Arial">Version 4.82 14-Mar-07</span></p>
+<ul type="disc">
+  <li class="Normal"><span style="font-family:Arial">EPS export is rotated</span></li>
+  <li class="Normal"><span style="font-family:Arial">STEM parameter selects stem plots</span></li>
+</ul> 
+<p class="Normal"><span style="font-family:Arial">&nbsp;</span></p>
+
+<p class="EndnoteText"><span style="font-family:Arial">&nbsp;</span></p>
+</div>
+</body>
+</html>

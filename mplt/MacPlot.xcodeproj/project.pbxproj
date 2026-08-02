@@ -824,7 +824,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = "5.16, Date: 17-Apr-20";
+				MARKETING_VERSION = "5.16, Date: 12-May-20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.boystown.TestOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -847,7 +847,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MARKETING_VERSION = "5.16, Date: 17-Apr-20";
+				MARKETING_VERSION = "5.16, Date: 12-May-20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.boystown.TestOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -870,7 +870,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = "5.16, Date: 17-Apr-20";
+				MARKETING_VERSION = "5.16, Date: 12-May-20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.btnrh.Plt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -893,7 +893,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = "5.16, Date: 17-Apr-20";
+				MARKETING_VERSION = "5.16, Date: 12-May-20";
 				PRODUCT_BUNDLE_IDENTIFIER = org.btnrh.plt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
