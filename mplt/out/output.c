@@ -152,11 +152,13 @@ errout(char *msg)
     }
     copa_.nerrs++;
     if (copa_.nerrs > MAXERR) {
-	dev_.prompt = 0;
-	fprintf(copa_.logfile, ">>> MORE THAN %d ERRORS! <<<\n", MAXERR);
-	clsout();
-	fprintf(stderr, "\007");
-	exit(1);
+        dev_.prompt = 0;
+        if (copa_.logfile != NULL) {
+            fprintf(copa_.logfile, ">>> MORE THAN %d ERRORS! <<<\n", MAXERR);
+        }
+        clsout();
+        fprintf(stderr, "\007");
+        exit(1);
     }
 }
 

@@ -187,8 +187,9 @@ d7close()
     }
     h.FileSize = rsiz;
     h.NumOfRecords = rcnt;
-    fwrite(&h, sizeof(h), 1, fpout);
-
+    if (fwrite(&h, sizeof(h), 1, fpout) != 1) {
+        // Silently ignore write failures during header rewrite for now
+    }
     if (xpt) {
         free(xpt);
 	xpt = NULL;
