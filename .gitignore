@@ -35,3 +35,4 @@ package/*.pkg
 .Trashes
 ehthumbs.db
 Thumbs.db
+Makefile
