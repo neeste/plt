@@ -396,6 +396,11 @@ void epsfix(char *sfn) {
         [self openPlot:file];
     }
 }
+- (void)application:(NSApplication *)application openURLs:(NSArray<NSURL *> *)urls {
+    for (NSURL *url in urls) {
+        [self openPlot:url.path];
+    }
+}
 - (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename {
     [self openPlot:filename];
     return YES;
@@ -429,6 +434,7 @@ void epsfix(char *sfn) {
     [self.plotView setNeedsDisplay:YES];
     NSDocumentController *dc = [NSDocumentController sharedDocumentController];
     [dc noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
+    [NSApp activateIgnoringOtherApps:YES];
 }
 - (IBAction)exportFile:(id)sender {
     NSString *pltFile = [PlotView getFileName];
