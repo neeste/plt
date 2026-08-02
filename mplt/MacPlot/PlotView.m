@@ -141,7 +141,7 @@ static NSString       *file_name = @"";
             [alert addButtonWithTitle:@"Cancel"];
             [alert setMessageText:@"Alert"];
             [alert setInformativeText:alertMsg];
-            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert setAlertStyle:NSAlertStyleWarning];
             [alert beginSheetModalForWindow:[self window] modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
         } else {
             [self deleteErrorLog];
