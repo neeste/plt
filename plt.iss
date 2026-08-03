@@ -14,8 +14,8 @@ Name: "desktopicon"; Description: "Create a &desktop icon"; GroupDescription: "A
 
 [Files]
 Source: "VS18\Release\wplt.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "VS18\wplt.chm"; DestDir: "{app}"; Flags: ignoreversion
-Source: "demo\*"; DestDir: "{app}"; Flags: ignoreversion
+Source: "VS18\wplt.chm"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "demo\*"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
 
 [Icons]
 Name: "{group}\Plt"; Filename: "{app}\wplt.exe"
