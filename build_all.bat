@@ -37,7 +37,7 @@ if exist "C:\Program Files (x86)\HTML Help Workshop\hhc.exe" (
 
 echo.
 echo [3/4] Building PLT Solution (Release)...
-msbuild VS18\plt.sln /p:Configuration=Release /v:m
+msbuild VS18\plt.sln /p:Configuration=Release /p:Platform=Win32 /v:m
 if errorlevel 1 (
     echo [ERROR] MSBuild failed!
     pause
