@@ -19,9 +19,15 @@ echo [*] Perl not found in PATH. Skipping version.pl update.
 :build_installer
 echo.
 echo [*] Compiling Inno Setup Installer...
-if not exist "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" goto iscc_not_found
+set "ISCC_PATH="
+if exist "C:\Program Files\Inno Setup 6\ISCC.exe" set "ISCC_PATH=C:\Program Files\Inno Setup 6\ISCC.exe"
+if exist "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" set "ISCC_PATH=C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
+if exist "C:\Program Files\Inno Setup 5\ISCC.exe" set "ISCC_PATH=C:\Program Files\Inno Setup 5\ISCC.exe"
+if exist "C:\Program Files (x86)\Inno Setup 5\ISCC.exe" set "ISCC_PATH=C:\Program Files (x86)\Inno Setup 5\ISCC.exe"
 
-"C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /O"Output" /F"PltSetup" plt.iss
+if "%ISCC_PATH%"=="" goto iscc_not_found
+
+"%ISCC_PATH%" /O"Output" /F"PltSetup" plt.iss
 if errorlevel 1 goto iscc_failed
 
 echo.
