@@ -18,12 +18,7 @@
 # ifdef __MACH__
 #   define  OS      "MAC"
 # else
-#   ifdef mgw
-#     define  OS      "MinGW"
-void    win_mesg(char *, char *);
-#   else
-#     define  OS      "DOS"
-#   endif // mgw
+#   define  OS      "DOS"
 # endif // MAC
 # endif // linux
 #   define  IN_TT   isatty(fileno(stdin))
