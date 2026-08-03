@@ -5,7 +5,7 @@ AppPublisher=Boys Town Nationial Research Hospital
 AppPublisherURL=http://www.boystownhospital.org
 AppSupportURL=http://audres.org/rc/plt/
 AppUpdatesURL=http://audres.org/rc/plt/
-DefaultDirName={pf}\BTNRH\PLT
+DefaultDirName={autopf}\BTNRH\PLT
 DefaultGroupName=BTNRH
 ChangesAssociations=Yes
 
