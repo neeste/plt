@@ -3,12 +3,16 @@ pushd "%~dp0"
 
 REM Locate Visual Studio vcvarsall.bat
 set "VCVARS="
+set "TOOLSET="
 if exist "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" (
     set "VCVARS=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
+    set "TOOLSET=v143"
 ) else if exist "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsall.bat" (
     set "VCVARS=C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvarsall.bat"
+    set "TOOLSET=v145"
 ) else if exist "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" (
     set "VCVARS=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat"
+    set "TOOLSET=v142"
 )
 
 echo ===================================================
@@ -37,7 +41,7 @@ if exist "C:\Program Files (x86)\HTML Help Workshop\hhc.exe" (
 
 echo.
 echo [3/4] Building PLT Solution (Release)...
-msbuild VS18\plt.sln /p:Configuration=Release /p:Platform=Win32 /v:m
+msbuild VS18\plt.sln /p:Configuration=Release /p:Platform=Win32 /p:PlatformToolset=%TOOLSET% /v:m
 if errorlevel 1 (
     echo [ERROR] MSBuild failed!
     pause
