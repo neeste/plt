@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+pushd "%~dp0"
 echo ==============================================
 echo       PLT Windows Installer Build Script
 echo ==============================================
