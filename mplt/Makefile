@@ -53,6 +53,11 @@ package: build
 	$(PM) package/Plt.pkgproj
 
 install: package
+	sudo installer -pkg $(PKG) -target /
+	sudo xattr -cr /Applications/BTNRH/Plt.app
+	sudo codesign -s - --force --deep /Applications/BTNRH/Plt.app
+
+install_pkg:
 	installer -pkg $(PKG) -target /
 	xattr -cr /Applications/BTNRH/Plt.app
 	codesign -s - --force --deep /Applications/BTNRH/Plt.app

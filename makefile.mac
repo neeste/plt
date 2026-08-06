@@ -12,6 +12,7 @@ build:
 
 install: build
 	make -f makefile.mac -C out
+	make -C mplt install
 	make -f makefile.mac -C tplt install
 	make -C man  install
 	mkdir -p $(BINDIR)
