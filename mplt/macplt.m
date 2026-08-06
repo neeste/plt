@@ -607,6 +607,10 @@ int main(int argc, const char * argv[]) {
         [editMenuItem setTarget:delegate];
         [fileMenu addItem:editMenuItem];
         
+        NSMenuItem *exportMenuItem = [[NSMenuItem alloc] initWithTitle:@"Export..." action:@selector(exportFile:) keyEquivalent:@"E"];
+        [exportMenuItem setTarget:delegate];
+        [fileMenu addItem:exportMenuItem];
+        
         [fileMenu addItem:[NSMenuItem separatorItem]];
         NSMenuItem *printMenuItem = [[NSMenuItem alloc] initWithTitle:@"Print..." action:@selector(print:) keyEquivalent:@"p"];
         [fileMenu addItem:printMenuItem];
